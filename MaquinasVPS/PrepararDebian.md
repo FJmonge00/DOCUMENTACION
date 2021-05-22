@@ -7,7 +7,7 @@ Esta maquina será la que sirva de base para la creacion de servidores virtuales
 virt-install --name vm-test \
 --virt-type kvm --hvm --os-variant=debian10 \
 --memory 2048 --vcpus 2 --network network=default \
---graphics vnc,password=remotevnc,listen=0.0.0.0 \
+--graphics vnc,password=contrasena,listen=0.0.0.0 \
 --disk pool=default,size=20,bus=virtio,format=qcow2 \
 --cdrom /var/lib/libvirt/images/debian-10.1.0-amd64-xfce-CD-1.iso  \
 --noautoconsole \
@@ -26,7 +26,7 @@ virt-install \
 --os-type linux \
 --os-variant debian10 \
 --network bridge=br0 \
---graphics vnc,password=remotevnc,listen=0.0.0.0 \
+--graphics vnc,password=contrasena,listen=0.0.0.0 \
 --noautoconsole \
 --location 'http://ftp.us.debian.org/debian/dists/stable/main/installer-amd64/'
 ```

@@ -63,7 +63,7 @@ virsh set-user-password NuevoCliente --user usuario --password 1234
 # Memoria
 
 ```bash
-virsh setmaxmem ServerCorreo 8388608 --config
+virsh setmaxmem ServerCorreo 4G --config
 ```
 # CPU
 
