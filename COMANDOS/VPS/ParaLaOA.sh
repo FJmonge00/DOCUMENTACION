@@ -8,15 +8,17 @@ DiscoAnadido=10
 Plan="Instalar LAMP"
 contrasena=$(cat /dev/urandom | tr -dc [:upper:][:lower:][:digit:] | head -c32)
 contrasena2=$(cat /dev/urandom | tr -dc [:upper:][:lower:][:digit:] | head -c32)
+echo "$contrasena"
+echo "$contrasena2"
 # Preparacion
 # Creación o Clonado
-virt-clone --original Base-$so --name $cliente-$id --file $VPS/$cliente-$id-$so.qcow2
+virt-clone --original Base$so --name $cliente-$id --file $VPS/$cliente-$id-$so.qcow2 #Contra Barra evita anadir Base a la variable
 # Preparacion Maquina
-virt-sysprep -d $cliente-$id --root-password password:$contrasena --password hosting:$contrasena2 --hostname $cliente-$id
+virt-sysprep -d $cliente-$id --root-password password:$contrasena --hostname $cliente-$id
 # Configuración de Hardware
 if [ $vCPU -gt 1 ]
     then
-        virsh setvcpu $cliente-$id $vCPU --config
+        virsh setvcpus $cliente-$id $vCPU --config --maximum #opcion maximun para ignorar el maximo para esta maquina
 fi
 if [ $vRAM -gt 2 ]
     then
@@ -24,6 +26,7 @@ if [ $vRAM -gt 2 ]
 fi
 if [ $DiscoAnadido -gt 0 ]
     then
-        qemu-img resize $VPS/$cliente-$id-$so.qcow2 +$DiscoAnadido
+        qemu-img resize $VPS/$cliente-$id-$so.qcow2 +$DiscoAnadido\G
 fi
+virsh start --domain $cliente-$id
 echo "ANSIBLE: $Plan"
