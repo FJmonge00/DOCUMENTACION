@@ -34,15 +34,17 @@ virt-install \
 # Version Final
 
 ```bash
-virt-install --name BaseDebian10 \
+wget -P $BASEVPS https://ftp.cica.es/CentOS/8.3.2011/isos/x86_64/CentOS-8.3.2011-x86_64-minimal.iso
+
+virt-install --name BaseCentos8 \
 --virt-type kvm \
 --hvm \
---os-variant=centos7.0 \
---memory 2048 \
---vcpus 1 \
+--os-variant=Centos7.0 \
+--memory 8096 \
+--vcpus 4 \
 --network network=default \
 --graphics vnc,password=Coria21,listen=0.0.0.0 \
 --disk pool=baseVPS,size=25,bus=virtio,format=qcow2 \
---noautoconsole \
---location 'https://ftp.cica.es/CentOS/8.3.2011/isos/x86_64/CentOS-8.3.2011-x86_64-minimal.iso'
+--cdrom "$BASEVPS/CentOS-8.3.2011-x86_64-minimal.iso" \
+--noautoconsole
 ```

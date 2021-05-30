@@ -1,5 +1,5 @@
-# Debian 10 (Buster) Base
-Esta maquina será la que sirva de base para la creacion de servidores virtuales que sean Debian 10
+# Ubuntu Server 20.04 (Focal Fossa) Base
+Esta maquina será la que sirva de base para la creacion de servidores virtuales que sean Ubuntu Server
 ## Implementación e Instalación
 # Version Simple
 
@@ -28,21 +28,23 @@ virt-install \
 --network bridge=br0 \
 --graphics vnc,password=contrasena,listen=0.0.0.0 \
 --noautoconsole \
---location 'http://ftp.us.debian.org/debian/dists/stable/main/installer-amd64/'
+--location 'https://releases.ubuntu.com/20.04.2/ubuntu-20.04.2-live-server-amd64.iso'
 ```
 
 # Version Final
 
+wget -P $BASEVPS https://releases.ubuntu.com/20.04.2/ubuntu-20.04.2-live-server-amd64.iso
+
 ```bash
-virt-install --name BaseDebian10 \
+virt-install --name BaseUbuntuServer2004 \
 --virt-type kvm \
 --hvm \
---os-variant=centos7.0 \
+--os-variant=ubuntu19.04 \
 --memory 2048 \
 --vcpus 1 \
 --network network=default \
 --graphics vnc,password=Coria21,listen=0.0.0.0 \
 --disk pool=baseVPS,size=25,bus=virtio,format=qcow2 \
---noautoconsole \
---location 'https://ftp.cica.es/CentOS/8.3.2011/isos/x86_64/CentOS-8.3.2011-x86_64-minimal.iso'
+--cdrom "$BASEVPS/ubuntu-20.04.2-live-server-amd64.iso" \
+--noautoconsole
 ```
