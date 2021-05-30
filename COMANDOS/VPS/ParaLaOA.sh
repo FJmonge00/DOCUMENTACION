@@ -1,42 +1,70 @@
 #!/bin/bash
-id=9512
-cliente=inerco
-so=Debian10
-vCPU=2
-vRAM=4
-DiscoAnadido=10
-Plan="Instalar LAMP"
+cliente=$1
+id=$2
+# so=Debian10
+so=$3
+# vCPU=2
+vCPU=$4
+# vRAM=4
+vRAM=$5
+# DiscoAnadido=10
+DiscoAnadido=$6
+Plan=$7
 contrasena=$(cat /dev/urandom | tr -dc [:upper:][:lower:][:digit:] | head -c32)
 # contrasena=Coria21
-echo "$cliente-$id" >> datos.txt
-echo "$contrasena" >> datos.txt
-# Preparacion
+if [ ! -d $OAVPSLOG/$cliente ]
+    then
+        mkdir -p $OAVPSLOG/$cliente
+        if [ ! -d $OAVPSLOG/$cliente/$cliente-$id ]
+            then
+                mkdir -p $OAVPSLOG/$cliente/$cliente-$id
+        fi
+    else
+        if [ ! -d $OAVPSLOG/$cliente/$cliente-$id ]
+            then
+                mkdir -p $OAVPSLOG/$cliente/$cliente-$id
+        fi
+fi
+echo "$(date +"%d-%m-%Y-%R:%S")" 2> /dev/null 1>> $OAVPSLOG/$cliente/$cliente-$id/preparacion.log
+echo "$cliente-$id" >> datos.txt 2> /dev/null 1>> $OAVPSLOG/$cliente/$cliente-$id/preparacion.log
+echo "$ip" >> datos.txt 2> /dev/null 1>> $OAVPSLOG/$cliente/$cliente-$id/preparacion.log
 # Creación o Clonado
-virt-clone --original Base$so --name $cliente-$id --file $VPS/$cliente-$id-$so.qcow2 #Contra Barra evita anadir Base a la variable
+virt-clone --original Base$so --name $cliente-$id --file $VPS/$cliente-$id-$so.qcow2 2> /dev/null 1>> $OAVPSLOG/$cliente/$cliente-$id/preparacion.log
 # Preparacion Maquina
-# virt-sysprep -d $cliente-$id --root-password password:$contrasena --hostname $cliente-$id
-virt-sysprep -d $cliente-$id --root-password password:$contrasena --hostname $cliente-$id --run preparacion.sh
+virt-sysprep -d $cliente-$id --root-password password:$contrasena --hostname $cliente-$id --run preparacion.sh 2> /dev/null 1>> $OAVPSLOG/$cliente/$cliente-$id/preparacion.log
 # Configuración de Hardware
 if [ $vCPU -gt 1 ]
     then
-        virsh setvcpus $cliente-$id $vCPU --config --maximum #opcion maximun para ignorar el maximo para esta maquina
+        virsh setvcpus $cliente-$id $vCPU --config --maximum  2> /dev/null 1>> $OAVPSLOG/$cliente/$cliente-$id/preparacion.log #opcion maximun para ignorar el maximo para esta maquina 
 fi
 if [ $vRAM -gt 2 ]
     then
-        virsh setmaxmem $cliente-$id $vRAM\G --config #Contra Barra evita anadir la G a la variable
+        virsh setmaxmem $cliente-$id $vRAM\G --config 2> /dev/null 1>> $OAVPSLOG/$cliente/$cliente-$id/preparacion.log #Contra Barra evita anadir la G a la variable
 fi
 if [ $DiscoAnadido -gt 0 ]
     then
-        qemu-img resize $VPS/$cliente-$id-$so.qcow2 +$DiscoAnadido\G
+        qemu-img resize $VPS/$cliente-$id-$so.qcow2 +$DiscoAnadido\G 2> /dev/null 1>> $OAVPSLOG/$cliente/$cliente-$id/preparacion.log
 fi
-virsh start --domain $cliente-$id # Arranque
-# sshpass -f password.txt ssh-copy-id root@192.168.122.157 -p 3022
-esperar=1
-while [ $esperar -eq 1 ] 
+virsh start --domain $cliente-$id 2> /dev/null 1>> $OAVPSLOG/$cliente/$cliente-$id/preparacion.log # Arranque 
+# Comprobar maquina arrancada
+estado=$(virsh list --all --state-shutoff --name | grep "$cliente-$id" | wc -l)
+while [ $estado -eq 1 ] 
 do
-    $conexion=$(ping -c1 $ip | grep "1 packets transmitted, 1 received, 0% packet loss" |wc -l)
+    sleep 2
+    $estado=$(virsh list --all --state-shutoff --name | grep "$cliente-$id" | wc -l)
+done
+# Comprobar arrancado finalizado
+esperar=1
+while [ $esperar -eq 1 ]
+do
+    ip=$(virsh domifaddr --domain "$cliente-$id" | grep "192.168" | awk '{print $4}' | sed 's/\/24//g') # IP DE LA MAQUINA
+    conexion=$(ping -c1 $ip 2> /dev/null | grep "1 packets transmitted, 1 received, 0% packet loss" |wc -l)
     case $conexion in
-        1) sshpass -f $contrasena ssh-copy-id root@$ip -p 3022
+        1) sshpass -p $contrasena ssh-copy-id -i ~/.ssh/id_rsa.pub -o StrictHostKeyChecking=no root@$ip -p 3022 2> /dev/null 1>> $OAVPSLOG/$cliente/$cliente-$id/preparacion.log
+        # echo "$contrasena" > contrasena-$id.txt
+        #    exit | sshpass -f contrasena-$id.txt ssh root@$ip -p 3022 #2> /dev/null
+        #    sshpass -f contrasena-$id.txt ssh-copy-id root@$ip -p 3022 #2> /dev/null
+           #rm contrasena-$id.txt --force
            esperar=0
         ;;
         *) sleep 2
@@ -44,6 +72,6 @@ do
         ;;
     esac
 done
-echo "ANSIBLE: $Plan"
-arp -n | grep $(virsh dumpxml $cliente-$id | grep mac\ address | cut -d \' -f 2 ) | cut -d \  -f 1 >> datos.txt
-echo ""  >> datos.txt
+# echo "ANSIBLE: $Plan"
+echo "VPS Preparado: $(date +"%d-%m-%Y-%R:%S")" 2> /dev/null 1>> $OAVPSLOG/$cliente/$cliente-$id/preparacion.log
+echo "" 2> /dev/null 1>> $OAVPSLOG/$cliente/$cliente-$id/preparacion.log
