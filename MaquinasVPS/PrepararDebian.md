@@ -34,9 +34,10 @@ virt-install \
 # Version Final
 
 ```bash
-virt-install --name BaseDebian10 \
+virt-install --name Debian10 \
 --virt-type kvm \
 --hvm \
+--accelerate \
 --os-variant=centos7.0 \
 --memory 2048 \
 --vcpus 1 \
@@ -44,5 +45,5 @@ virt-install --name BaseDebian10 \
 --graphics vnc,password=Coria21,listen=0.0.0.0 \
 --disk pool=baseVPS,size=25,bus=virtio,format=qcow2 \
 --noautoconsole \
---location 'https://ftp.cica.es/CentOS/8.3.2011/isos/x86_64/CentOS-8.3.2011-x86_64-minimal.iso'
+--location 'http://ftp.us.debian.org/debian/dists/stable/main/installer-amd64/'
 ```
