@@ -65,16 +65,54 @@ virt-install --vnc --accelerate --disk=/home/discosKVM/win10.img,size=32,sparse=
 # Version Estable
 ```bash
 virt-install --name=BaseWindowsServer2019 \
---ram=4096 \
+--ram=8096 \
 --cpu host \
 --hvm \
 --vcpus=2 \
 --os-type=windows \
 --os-variant=win2k16 \
---disk $BASEVPS/win10.img,size=40,bus=virtio \
+--disk $BASEVPS/BaseWindowsServer2019.qcow2,size=35,bus=virtio \
 --cdrom $BASEVPS/WS2019-V17763-737-190906-2324.iso \
+--disk $BASEVPS/WS2019-V17763-737-190906-2324.iso,device=cdrom \
+--network network=default \
+--graphics vnc,password=Coria21,listen=0.0.0.0 \
+--noautoconsole \
+--check all=off \
+--boot cdrom
+```
 # --disk /var/lib/libvirt/boot/WS2019-V17763-737-190906-2324.iso,device=cdrom \
---disk $BASEVPS/virtio-win.iso,device=cdrom \
+
+```bash
+cd $BASEVPS
+wget https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/stable-virtio/virtio-win.iso
+# wget https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/latest-virtio/virtio-win.iso
+```
+
+![virtio](./imagenes/virtio1.jpg)
+
+
+![virtio](./imagenes/virtio2.jpg)
+![virtio](./imagenes/virtio3.png)
+![virtio](./imagenes/virtio4.png)
+![virtio](./imagenes/virtio5.jpg)
+![virtio](./imagenes/virtio6.jpg)
+![virtio](./imagenes/virtio7.png)
+![virtio](./imagenes/virtio8.png)
+
+Para añadirlo directamente en el script de creacion de VPS BASE:
+
+# Version Estable V2
+```bash
+virt-install --name=BaseWindowsServer2019 \
+--ram=8096 \
+--cpu host \
+--hvm \
+--vcpus=2 \
+--os-type=windows \
+--os-variant=win2k16 \
+--disk $BASEVPS/BaseWindowsServer2019.qcow2,size=35,bus=virtio \
+--cdrom $BASEVPS/WS2019-V17763-737-190906-2324.iso \
+--disk $BASEVPS/WS2019-V17763-737-190906-2324.iso,device=cdrom \
 --network network=default \
 --graphics vnc,password=Coria21,listen=0.0.0.0 \
 --noautoconsole \
