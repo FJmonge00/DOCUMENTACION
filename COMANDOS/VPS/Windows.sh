@@ -30,7 +30,7 @@ echo "$cliente-$id" >> datos.txt 2> /dev/null 1>> $OAVPSLOG/$cliente/$cliente-$i
 # Creación o Clonado
 virt-clone --original Base$so --name $cliente-$id --file $VPS/$cliente-$id-$so.qcow2 2> /dev/null 1>> $OAVPSLOG/$cliente/$cliente-$id/preparacion.log
 # Preparacion Maquina
-virt-sysprep -d $cliente-$id --root-password password:$contrasena --hostname $cliente-$id
+# virt-sysprep -d $cliente-$id --root-password password:$contrasena --hostname $cliente-$id
 # Configuración de Hardware
 if [ $vCPU -gt 1 ]
     then
@@ -57,7 +57,7 @@ esperar=1
 while [ $esperar -eq 1 ]
 do
     ip=$(virsh domifaddr --domain "$cliente-$id" | grep "192.168" | awk '{print $4}' | sed 's/\/24//g') # IP DE LA MAQUINA
-    conexion=$(ping -c1 $ip 2> /dev/null | grep "1 packets transmitted, 1 received, 0% packet loss" |wc -l)
+    # conexion=$(ping -c1 $ip 2> /dev/null | grep "1 packets transmitted, 1 received, 0% packet loss" |wc -l)
     case $conexion in
         1) #sshpass -p $contrasena ssh-copy-id -i ~/.ssh/id_rsa.pub -o StrictHostKeyChecking=no root@$ip -p 3022 2> /dev/null 1>> $OAVPSLOG/$cliente/$cliente-$id/preparacion.log
         # echo "$contrasena" > contrasena-$id.txt
