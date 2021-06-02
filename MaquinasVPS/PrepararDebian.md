@@ -38,7 +38,7 @@ virt-install --name Debian10 \
 --virt-type kvm \
 --hvm \
 --accelerate \
---os-variant=centos7.0 \
+--os-variant=debian10 \
 --memory 2048 \
 --vcpus 1 \
 --network network=default \

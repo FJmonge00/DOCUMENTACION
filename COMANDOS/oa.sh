@@ -1,9 +1,9 @@
 #!/bin/bash
 # Variables entorno
-export OA="/var/lib/oa"
-export BASEK8S="/var/lib/oa/Kubernetes/base"
-export LANZADERA="/var/lib/oa/Kubernetes/lanzadera"
-export OAK8SLOG="/var/log/hosting"
+# export OA="/var/lib/oa"
+# export BASEK8S="/var/lib/oa/Kubernetes/base"
+# export LANZADERA="/var/lib/oa/Kubernetes/lanzadera"
+# export OAK8SLOG="/var/log/hosting"
 #SCRIPT
 # 
 #

@@ -20,9 +20,10 @@ CREATE DATABASE hosting;
 GRANT ALL PRIVILEGES ON hosting.* TO 'zeus'@'localhost';
 FLUSH PRIVILEGES; -- Cargar los privilegios
 GRANT SELECT ON hosting.servicios TO 'thor'@'localhost';
+GRANT SELECT ON hosting.vps TO 'thor'@'localhost';
 FLUSH PRIVILEGES; -- Cargar los privilegios
 ```
 
-> Para las repetidas consultas que realizará la oa utilizaremos un usuario con permisos unicamente de lectura sobre la base de datos y en concreto unicamente sobre la base de datos  "hosting "en una determinada tabla que es "servicios". Recomendable esta metodología por seguridad pese a que sola existe una gran tabla en esta base de datos pero si en algun momento quisieramos escalar esto y crear nuevas tablas estaría afectando tambien a estas. CORREGIR]
+> Para las repetidas consultas que realizará la oa utilizaremos un usuario con permisos unicamente de lectura sobre la base de datos y en concreto unicamente sobre la base de datos  "hosting "en una determinada tabla que es "servicios". Recomendable esta metodología por seguridad pese a que sola existe 2 grandes tabla en esta base de datos pero si en algun momento quisieramos escalar esto y crear nuevas tablas estaría afectando tambien a estas. CORREGIR]
 
 [Ir a Tablas y Datos](CrearBaseDatosYTablas.md)
