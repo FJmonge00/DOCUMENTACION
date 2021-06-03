@@ -1,13 +1,9 @@
 #!/bin/bash
 cliente=$1
 id=$2
-# so=Debian10
 so=$3
-# vCPU=2
 vCPU=$4
-# vRAM=4
 vRAM=$5
-# DiscoAnadido=10
 DiscoAnadido=$6
 Plan=$7
 contrasena=$(cat /dev/urandom | tr -dc [:upper:][:lower:][:digit:] | head -c32)
@@ -29,8 +25,6 @@ echo "$(date +"%d-%m-%Y-%R:%S")" 2> /dev/null 1>> $OAVPSLOG/$cliente/$cliente-$i
 echo "$cliente-$id" >> datos.txt 2> /dev/null 1>> $OAVPSLOG/$cliente/$cliente-$id/preparacion.log
 # Creación o Clonado
 virt-clone --original Base$so --name $cliente-$id --file $VPS/$cliente-$id-$so.qcow2 2> /dev/null 1>> $OAVPSLOG/$cliente/$cliente-$id/preparacion.log
-# Preparacion Maquina
-# virt-sysprep -d $cliente-$id --root-password password:$contrasena --hostname $cliente-$id
 # Configuración de Hardware
 if [ $vCPU -gt 1 ]
     then
@@ -57,7 +51,6 @@ esperar=1
 while [ $esperar -eq 1 ]
 do
     ip=$(virsh domifaddr --domain "$cliente-$id" | grep "192.168" | awk '{print $4}' | sed 's/\/24//g') # IP DE LA MAQUINA
-    # conexion=$(ping -c1 $ip 2> /dev/null | grep "1 packets transmitted, 1 received, 0% packet loss" |wc -l)
     case $conexion in
         1) #sshpass -p $contrasena ssh-copy-id -i ~/.ssh/id_rsa.pub -o StrictHostKeyChecking=no root@$ip -p 3022 2> /dev/null 1>> $OAVPSLOG/$cliente/$cliente-$id/preparacion.log
         # echo "$contrasena" > contrasena-$id.txt
@@ -75,3 +68,13 @@ done
 echo "$ip" >> datos.txt 2> /dev/null 1>> $OAVPSLOG/$cliente/$cliente-$id/preparacion.log
 echo "VPS Preparado: $(date +"%d-%m-%Y-%R:%S")" 2> /dev/null 1>> $OAVPSLOG/$cliente/$cliente-$id/preparacion.log
 echo "" 2> /dev/null 1>> $OAVPSLOG/$cliente/$cliente-$id/preparacion.log
+# Preparacion del Correo Bienvenida
+if [ $notificar -gt 0 ]
+    then
+        cat $CORREO/bienvenida/plantillaVPS.txt > $CORREO/bienvenida/VPS/Bienvenida-$cliente-$id.txt
+        # Personalizacion
+        sed -i "s/VPS-CAMBIAR/$so/g" $CORREO/bienvenida/VPS/Bienvenida-$cliente-$id.txt
+        sed -i "s/IP-VPS/$ip/g" $CORREO/bienvenida/VPS/Bienvenida-$cliente-$id.txt
+        sed -i "s/CONTRASENA-VPS/$contrasena/g" $CORREO/bienvenida/VPS/Bienvenida-$cliente-$id.txt
+        cat $CORREO/bienvenida/VPS/Bienvenida-$cliente-$id.txt | mail -s "Alta VPS: $so-$id" $email
+fi

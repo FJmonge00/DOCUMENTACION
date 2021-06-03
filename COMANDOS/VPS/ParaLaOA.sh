@@ -10,6 +10,8 @@ vRAM=$5
 # DiscoAnadido=10
 DiscoAnadido=$6
 Plan=$7
+notificar=$8
+email=$9
 contrasena=$(cat /dev/urandom | tr -dc [:upper:][:lower:][:digit:] | head -c32)
 # contrasena=Coria21
 if [ ! -d $OAVPSLOG/$cliente ]

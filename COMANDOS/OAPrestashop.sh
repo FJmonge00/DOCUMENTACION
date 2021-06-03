@@ -38,6 +38,7 @@ sed "s/name: prestashop-id/name: prestashop-$id/g" $BASEK8S/prestashop/prestasho
 sed "s\id: \"1000\"\id: \"$id\"\g" |
 sed "s/cliente: elcliente/cliente: $cliente/g" |
 sed "s/value: mysql-id/value: mysql-$id/g" |
+sed "s/value: admin-id/value: admin-$id/g" |
 sed "s/value: contrasena/value: $contrasena/g" |
 sed "s/claimName: pvc-elcliente-prestashop-id/claimName: pvc-$cliente-prestashop-$id/g" > $LANZADERA/prestashop-$id/prestashop-deployment.yaml
 # Deploy MySQL
@@ -52,13 +53,13 @@ if [ $notificar -gt 0 ]
     then
         cat $CORREO/bienvenida/plantillaServicio.txt > $CORREO/bienvenida/servicios/Bienvenida-$cliente-$id.txt
         # Personalizacion
-        sed -i "s/SERVICIO/Drupal/g" $CORREO/bienvenida/servicios/Bienvenida-$cliente-$id.txt
-        sed -i "s/USUARIODB/drupal/g" $CORREO/bienvenida/servicios/Bienvenida-$cliente-$id.txt
+        sed -i "s/SERVICIO/PrestaShop/g" $CORREO/bienvenida/servicios/Bienvenida-$cliente-$id.txt
+        sed -i "s/USUARIODB/prestashop/g" $CORREO/bienvenida/servicios/Bienvenida-$cliente-$id.txt
         sed -i "s/CONTRASENADB/$contrasena/g" $CORREO/bienvenida/servicios/Bienvenida-$cliente-$id.txt
-        sed -i "s/SERVIDOR/postgres-$id/g" $CORREO/bienvenida/servicios/Bienvenida-$cliente-$id.txt
-        cp $BASEK8S/drupal/lanzar.sh $LANZADERA/drupal-$id/
-        sh $LANZADERA/drupal-$id/lanzar.sh $id $cliente $notificar $email
+        sed -i "s/SERVIDOR/mysql-$id/g" $CORREO/bienvenida/servicios/Bienvenida-$cliente-$id.txt
+        cp $BASEK8S/prestashop/lanzar.sh $LANZADERA/prestashop-$id/
+        sh $LANZADERA/prestashop-$id/lanzar.sh $id $cliente $notificar $email
     else
-        cp $BASEK8S/drupal/lanzar.sh $LANZADERA/drupal-$id/
-        sh $LANZADERA/drupal-$id/lanzar.sh $id $cliente $notificar $email
+        cp $BASEK8S/prestashop/lanzar.sh $LANZADERA/prestashop-$id/
+        sh $LANZADERA/prestashop-$id/lanzar.sh $id $cliente $notificar $email
 fi
