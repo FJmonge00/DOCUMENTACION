@@ -1,5 +1,7 @@
 id=$1
 cliente=$2
+notificar=$3
+email=$4
 # echo "OAWordpress $id"
 # echo "OAWordpress $cliente"
 # cd $BASEK8S/wordpress 
@@ -48,5 +50,18 @@ sed "s/cliente: elcliente/cliente: $cliente/g" |
 sed "s/value: mysql-id/value: mysql-$id/g" |
 sed "s/value: contrasena/value: $contrasena/g" |
 sed "s/claimName: pvc-elcliente-mysql-id/claimName: pvc-$cliente-mysql-$id/g" > $LANZADERA/wordpress-$id/mysql-deployment.yaml
-cp $BASEK8S/wordpress/lanzar.sh $LANZADERA/wordpress-$id/
-sh $LANZADERA/wordpress-$id/lanzar.sh $id $cliente
+# Preparacion del Correo Bienvenida
+if [ $notificar -gt 0 ]
+    then
+        cat $CORREO/bienvenida/plantillaServicio.txt > $CORREO/bienvenida/servicios/Bienvenida-$cliente-$id.txt
+        # Personalizacion
+        sed -i "s/SERVICIO/WordPress/g" $CORREO/bienvenida/servicios/Bienvenida-$cliente-$id.txt |
+        sed -i "/USUARIODB/d" $CORREO/bienvenida/servicios/Bienvenida-$cliente-$id.txt
+        sed -i "/CONTRASENADB/d" $CORREO/bienvenida/servicios/Bienvenida-$cliente-$id.txt
+        sed -i "/SERVIDOR/d" $CORREO/bienvenida/servicios/Bienvenida-$cliente-$id.txt
+        cp $BASEK8S/wordpress/lanzar.sh $LANZADERA/wordpress-$id/
+        sh $LANZADERA/wordpress-$id/lanzar.sh $id $cliente $notificar $email
+    else
+        cp $BASEK8S/wordpress/lanzar.sh $LANZADERA/wordpress-$id/
+        sh $LANZADERA/wordpress-$id/lanzar.sh $id $cliente $notificar $email
+fi

@@ -1,5 +1,7 @@
 id=$1
 cliente=$2
+notificar=$3
+email=$4
 # echo "OAjoomla $id"
 # echo "OAjoomla $cliente"
 # cd $BASEK8S/joomla 
@@ -48,5 +50,19 @@ sed "s/cliente: elcliente/cliente: $cliente/g" |
 sed "s/value: mysql-id/value: mysql-$id/g" |
 sed "s/value: contrasena/value: $contrasena/g" |
 sed "s/claimName: pvc-elcliente-mysql-id/claimName: pvc-$cliente-mysql-$id/g" > $LANZADERA/joomla-$id/mysql-deployment.yaml
-cp $BASEK8S/joomla/lanzar.sh $LANZADERA/joomla-$id/
-sh $LANZADERA/joomla-$id/lanzar.sh $id $cliente
+# Preparacion del Correo Bienvenida
+if [ $notificar -gt 0 ]
+    then
+        # cat $CORREO/bienvenida/plantillaServicio.txt > $CORREO/bienvenida/servicios/PRUEBA.txt
+        cat $CORREO/bienvenida/plantillaServicio.txt > $CORREO/bienvenida/servicios/Bienvenida-$cliente-$id.txt
+        # Personalizacion
+        sed -i "s/SERVICIO/Joomla/g" $CORREO/bienvenida/servicios/Bienvenida-$cliente-$id.txt
+        sed -i "s/USUARIODB/joomla/g" $CORREO/bienvenida/servicios/Bienvenida-$cliente-$id.txt
+        sed -i "s/CONTRASENADB/$contrasena/g" $CORREO/bienvenida/servicios/Bienvenida-$cliente-$id.txt
+        sed -i "s/SERVIDOR/mysql-$id/g" $CORREO/bienvenida/servicios/Bienvenida-$cliente-$id.txt
+        cp $BASEK8S/joomla/lanzar.sh $LANZADERA/joomla-$id/
+        sh $LANZADERA/joomla-$id/lanzar.sh $id $cliente $notificar $email
+    else
+        cp $BASEK8S/joomla/lanzar.sh $LANZADERA/joomla-$id/
+        sh $LANZADERA/joomla-$id/lanzar.sh $id $cliente $notificar $email
+fi

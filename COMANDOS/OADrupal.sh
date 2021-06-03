@@ -1,8 +1,7 @@
 id=$1
 cliente=$2
-# echo "OAdrupal $id"
-# echo "OAdrupal $cliente"
-# cd $BASEK8S/drupal 
+notificar=$3
+email=$4
 # Preparar PV
 sed "s/name: pv-elcliente-drupal-id/name: pv-$cliente-drupal-$id/g" $BASEK8S/drupal/pv-drupal.yaml |
 sed "s\id: \"1000\"\id: \"$id\"\g" |
@@ -40,5 +39,18 @@ sed "s\id: \"1000\"\id: \"$id\"\g" |
 sed "s/cliente: elcliente/cliente: $cliente/g" |
 sed "s/value: contrasena/value: $contrasena/g" |
 sed "s/claimName: pvc-elcliente-postgres-id/claimName: pvc-$cliente-postgres-$id/g" > $LANZADERA/drupal-$id/postgres-deployment.yaml
-cp $BASEK8S/drupal/lanzar.sh $LANZADERA/drupal-$id/
-sh $LANZADERA/drupal-$id/lanzar.sh $id $cliente
+# Preparacion del Correo Bienvenida
+if [ $notificar -gt 0 ]
+    then
+        cat $CORREO/bienvenida/plantillaServicio.txt > $CORREO/bienvenida/servicios/Bienvenida-$cliente-$id.txt
+        # Personalizacion
+        sed -i "s/SERVICIO/Drupal/g" $CORREO/bienvenida/servicios/Bienvenida-$cliente-$id.txt
+        sed -i "s/USUARIODB/drupal/g" $CORREO/bienvenida/servicios/Bienvenida-$cliente-$id.txt
+        sed -i "s/CONTRASENADB/$contrasena/g" $CORREO/bienvenida/servicios/Bienvenida-$cliente-$id.txt
+        sed -i "s/SERVIDOR/postgres-$id/g" $CORREO/bienvenida/servicios/Bienvenida-$cliente-$id.txt
+        cp $BASEK8S/drupal/lanzar.sh $LANZADERA/drupal-$id/
+        sh $LANZADERA/drupal-$id/lanzar.sh $id $cliente $notificar $email
+    else
+        cp $BASEK8S/drupal/lanzar.sh $LANZADERA/drupal-$id/
+        sh $LANZADERA/drupal-$id/lanzar.sh $id $cliente $notificar $email
+fi

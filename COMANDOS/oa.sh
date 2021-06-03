@@ -1,14 +1,6 @@
 #!/bin/bash
-# Variables entorno
-# export OA="/var/lib/oa"
-# export BASEK8S="/var/lib/oa/Kubernetes/base"
-# export LANZADERA="/var/lib/oa/Kubernetes/lanzadera"
-# export OAK8SLOG="/var/log/hosting"
-#SCRIPT
-# 
-#
 # Consulta en MariaDB
-echo "SELECT id,app,cliente FROM servicios WHERE fecha > NOW() - INTERVAL 3 MINUTE" | mariadb -N -B hosting > $LANZADERA/cola/servicios.csv
+echo "SELECT id,app,cliente,notificar,email FROM servicios WHERE fecha > NOW() - INTERVAL 3 MINUTE" | mariadb -N -B hosting > $LANZADERA/cola/servicios.csv
 # Prepara CSV
 sed -i 's/\t/,/g' $LANZADERA/cola/servicios.csv # Control errores Eliminar Espacios
 if [ ! -s $LANZADERA/cola/servicios.csv ] # Si no tiene datos (Vacio)
@@ -20,19 +12,19 @@ if [ ! -s $LANZADERA/cola/servicios.csv ] # Si no tiene datos (Vacio)
         echo "" >> $OAK8SLOG/oa/serviciosLanzados.log
         cat $LANZADERA/cola/servicios.csv >> $OAK8SLOG/oa/serviciosLanzados.log
         echo "" >> $OAK8SLOG/oa/serviciosLanzados.log
-        while IFS=, read id app cliente
+        while IFS=, read id app cliente notificar email
         do
             mkdir $LANZADERA/${app}-${id} # Carpeta base de lanzadera del servicio
             case ${app} in
-                'joomla') sh OAJoomla.sh $id $cliente
+                'joomla') sh OAJoomla.sh $id $cliente $notificar $email
                 ;;
-                'wordpress') sh OAWordpress.sh $id $cliente
+                'wordpress') sh OAWordpress.sh $id $cliente $notificar $email
                 ;;
-                'prestashop') sh OAPrestashop.sh $id $cliente
+                'prestashop') sh OAPrestashop.sh $id $cliente $notificar $email
                 ;;
                 'mediawiki') echo "mediawiki"
                 ;;
-                'drupal') sh OADrupal.sh $id $cliente
+                'drupal') sh OADrupal.sh $id $cliente $notificar $email
                 ;;
                 *) echo "Error de lanzamiento: $(date +"%d-%m-%Y-%R:%S")" >> $OAK8SLOG/oa/serviciosLanzados.log
                    echo "Valor de Id: ${id}" >> $OAK8SLOG/oa/serviciosLanzados.log
