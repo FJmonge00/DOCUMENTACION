@@ -32,9 +32,6 @@
       become: yes
   # Instalacion PHP
     - name: Instalacion Y Configuracion de PHP
-      apt: name=php state=latest
-      become: yes
-    - name: Instalacion Y Configuracion de PHP
       apt: name=php-fpm state=latest
       become: yes
     - name: Instalacion Y Configuracion de PHP

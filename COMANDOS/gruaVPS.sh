@@ -13,6 +13,7 @@ contrasena=Coria21
 if [ ! -d $OAVPSLOG/$cliente ]
     then
         mkdir -p $OAVPSLOG/$cliente
+        chown franadmin:franadmin -R $OAVPSLOG/$cliente
         if [ ! -d $OAVPSLOG/$cliente/$cliente-$id ]
             then
                 mkdir -p $OAVPSLOG/$cliente/$cliente-$id

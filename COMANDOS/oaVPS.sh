@@ -15,27 +15,32 @@ if [ ! -s $SALIDAVPS/salidaVPS.txt ] # Si no tiene datos (Vacio)
         echo "" >> $OAVPSLOG/VPSLanzados.log
         while IFS=, read id so plan cliente vcpu vram disco notificar email
         do
-            ./gruaVPS.sh ${cliente} ${id} ${so} ${vcpu} ${vram} ${disco} ${plan} ${notificar} ${email}        
-            case ${so} in
-                'Debian10') 
-                    if [ $plan == 'DockerDesarollo' ] 
-                        then
-                            ansible-playbook -i $SALIDAVPS/salidaVPS.conf $plan-$so.yaml 2> /dev/null 1>> $OAVPSLOG/$cliente/$cliente-$id/preparacion.log
-                        else
-                            ansible-playbook -i $SALIDAVPS/salidaVPS.conf $plan.yaml 2> /dev/null 1>> $OAVPSLOG/$cliente/$cliente-$id/preparacion.log
-                    fi
-                ;;
-                'UbuntuServer2004') 
-                    if [ $plan == 'DockerDesarollo' ] 
-                        then
-                            ansible-playbook -i $SALIDAVPS/salidaVPS.conf $plan-$so.yaml 2> /dev/null 1>> $OAVPSLOG/$cliente/$cliente-$id/preparacion.log
-                        else
-                            ansible-playbook -i $SALIDAVPS/salidaVPS.conf $plan.yaml 2> /dev/null 1>> $OAVPSLOG/$cliente/$cliente-$id/preparacion.log
-                    fi
-                ;;
-                *)
-                ;;
-            esac
-            echo "IINSERT INTO vps (`fechapreparada`) VALUES (CURRENT_TIMESTAMP)"| mariadb -N -B hosting > $SALIDAVPS/salidaVPS.txt
+            if [ $so == 'WindowsServer2019' ] 
+                then
+                    ./gruaVPS.sh ${cliente} ${id} ${so} ${vcpu} ${vram} ${disco} ${plan} ${notificar} ${email}        
+                    case ${so} in
+                        'Debian10') 
+                            if [ $plan == 'DockerDesarollo' ] 
+                                then
+                                    ansible-playbook -i $SALIDAVPS/salidaVPS.conf $plan-$so.yaml 2> /dev/null 1>> $OAVPSLOG/$cliente/$cliente-$id/preparacion.log
+                                else
+                                    ansible-playbook -i $SALIDAVPS/salidaVPS.conf $plan.yaml 2> /dev/null 1>> $OAVPSLOG/$cliente/$cliente-$id/preparacion.log
+                            fi
+                        ;;
+                        'UbuntuServer2004') 
+                            if [ $plan == 'DockerDesarollo' ] 
+                                then
+                                    ansible-playbook -i $SALIDAVPS/salidaVPS.conf $plan-$so.yaml 2> /dev/null 1>> $OAVPSLOG/$cliente/$cliente-$id/preparacion.log
+                                else
+                                    ansible-playbook -i $SALIDAVPS/salidaVPS.conf $plan.yaml 2> /dev/null 1>> $OAVPSLOG/$cliente/$cliente-$id/preparacion.log
+                            fi
+                        ;;
+                        *)
+                        ;;
+                    esac
+                else
+                    ./gruaVPSWindows.sh ${cliente} ${id} ${so} ${vcpu} ${vram} ${disco} ${plan} ${notificar} ${email}
+            fi
+            echo "UPDATE vps SET fechapreparada = (CURRENT_TIMESTAMP) WHERE id = $id" | mariadb -N -B hosting 2>> $OAVPSLOG/$cliente/$cliente-$id/preparacion.log
         done < $SALIDAVPS/salidaVPS.txt
 fi
