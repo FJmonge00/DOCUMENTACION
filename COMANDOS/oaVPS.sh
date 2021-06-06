@@ -1,7 +1,6 @@
 #!/bin/bash
 # Consulta en MariaDB
 echo "SELECT id,so,plan,cliente,vcpu,vram,disco,notificar,email FROM vps WHERE fechasolicitud > NOW() - INTERVAL 3 MINUTE" | mariadb -N -B hosting > $SALIDAVPS/salidaVPS.txt
-# echo "SELECT id,app,cliente FROM servicios WHERE fecha > NOW() - INTERVAL 3 MINUTE" | mariadb -N -B hosting > $SALIDAVPS/salidaVPS.txt
 # Prepara CSV
 sed -i 's/\t/,/g' $SALIDAVPS/salidaVPS.txt # Control errores Eliminar Espacios y añadir delimitadores de campo
 if [ ! -s $SALIDAVPS/salidaVPS.txt ] # Si no tiene datos (Vacio)
@@ -18,17 +17,25 @@ if [ ! -s $SALIDAVPS/salidaVPS.txt ] # Si no tiene datos (Vacio)
         do
             ./gruaVPS.sh ${cliente} ${id} ${so} ${vcpu} ${vram} ${disco} ${plan} ${notificar} ${email}        
             case ${so} in
-                'Debian10') ansible-playbook -i $SALIDAVPS/salidaVPS.conf $plan.yaml
+                'Debian10') 
+                    if [ $plan == 'DockerDesarollo' ] 
+                        then
+                            ansible-playbook -i $SALIDAVPS/salidaVPS.conf $plan-$so.yaml 2> /dev/null 1>> $OAVPSLOG/$cliente/$cliente-$id/preparacion.log
+                        else
+                            ansible-playbook -i $SALIDAVPS/salidaVPS.conf $plan.yaml 2> /dev/null 1>> $OAVPSLOG/$cliente/$cliente-$id/preparacion.log
+                    fi
                 ;;
-                'UbuntuServer2004') ansible-playbook -i $SALIDAVPS/salidaVPS.conf $plan.yaml
+                'UbuntuServer2004') 
+                    if [ $plan == 'DockerDesarollo' ] 
+                        then
+                            ansible-playbook -i $SALIDAVPS/salidaVPS.conf $plan-$so.yaml 2> /dev/null 1>> $OAVPSLOG/$cliente/$cliente-$id/preparacion.log
+                        else
+                            ansible-playbook -i $SALIDAVPS/salidaVPS.conf $plan.yaml 2> /dev/null 1>> $OAVPSLOG/$cliente/$cliente-$id/preparacion.log
+                    fi
                 ;;
                 *)
                 ;;
             esac
+            echo "IINSERT INTO vps (`fechapreparada`) VALUES (CURRENT_TIMESTAMP)"| mariadb -N -B hosting > $SALIDAVPS/salidaVPS.txt
         done < $SALIDAVPS/salidaVPS.txt
 fi
-
-# if [ "$so" == in 'Debian10','UbuntuServer2004' ] 
-#     then
-#         ansible-playbook -i $SALIDAVPS/salidaVPS.conf $plan.yaml
-# fi

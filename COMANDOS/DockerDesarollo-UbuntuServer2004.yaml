@@ -31,9 +31,6 @@
     - name: Instalacion de pre-requisitos para docker
       apt: name=lsb-release state=latest
       become: yes
-    # - name: Install required system packages
-    #   apt: name={{ item }} state=latest update_cache=yes
-    #   loop: [ '', '', '', '', 'python3-pip', 'virtualenv', 'python3-setuptools']
   # Agregar claves reposotiorios
     - name: Agregar clave GPG oficial de Docker
       apt_key:

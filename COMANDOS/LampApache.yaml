@@ -6,9 +6,9 @@
     ansible_port: '3022'
   tasks:
   # Apt update y uprade
-    - name: Actualizacion de VPS
+    - name: Actualizacion de repositorios
       apt: update_cache=yes state=latest force_apt_get=yes cache_valid_time=3600 # Si tiene mas de 1 hora de antiguedad
-    - name: Upgrade all apt packages
+    - name: Actualizacion del Sistema
       apt: upgrade=dist force_apt_get=yes
   # Apache Instalacion
     - name: Instalacion Y Configuracion de Apache
