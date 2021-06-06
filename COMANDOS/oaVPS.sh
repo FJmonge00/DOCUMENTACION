@@ -17,10 +17,18 @@ if [ ! -s $SALIDAVPS/salidaVPS.txt ] # Si no tiene datos (Vacio)
         while IFS=, read id so plan cliente vcpu vram disco notificar email
         do
             ./gruaVPS.sh ${cliente} ${id} ${so} ${vcpu} ${vram} ${disco} ${plan} ${notificar} ${email}        
+            case ${so} in
+                'Debian10') ansible-playbook -i $SALIDAVPS/salidaVPS.conf $plan.yaml
+                ;;
+                'UbuntuServer2004') ansible-playbook -i $SALIDAVPS/salidaVPS.conf $plan.yaml
+                ;;
+                *)
+                ;;
+            esac
         done < $SALIDAVPS/salidaVPS.txt
 fi
-if [ $so in 'Debian10','UbuntuServer2004'] 
-then
-    
-fi
-ansible-playbook -i $SALIDAVPS/salidaVPS.conf $plan.yaml
+
+# if [ "$so" == in 'Debian10','UbuntuServer2004' ] 
+#     then
+#         ansible-playbook -i $SALIDAVPS/salidaVPS.conf $plan.yaml
+# fi

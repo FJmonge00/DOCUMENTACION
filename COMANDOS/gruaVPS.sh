@@ -80,7 +80,14 @@ done
 echo "$ip" >> datos.txt 2> /dev/null 1>> $OAVPSLOG/$cliente/$cliente-$id/preparacion.log
 echo "VPS Preparado: $(date +"%d-%m-%Y-%R:%S")" 2> /dev/null 1>> $OAVPSLOG/$cliente/$cliente-$id/preparacion.log
 echo "" 2> /dev/null 1>> $OAVPSLOG/$cliente/$cliente-$id/preparacion.log
-echo $ip >> $SALIDAVPS/salidaVPS.conf
+case $so in
+    'Debian10') echo $ip >> $SALIDAVPS/salidaVPS.conf # IP para Ansible
+    ;;
+    'UbuntuServer2004') echo $ip >> $SALIDAVPS/salidaVPS.conf # IP para Ansible
+    ;;
+    *)
+    ;;
+esac
 # Preparacion del Correo Bienvenida
 if [ $notificar -gt 0 ]
     then

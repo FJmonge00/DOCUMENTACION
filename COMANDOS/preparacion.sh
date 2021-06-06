@@ -6,7 +6,6 @@ if [ $tiposo -gt 0 ]
     else
         dpkg-reconfigure --force openssh-server
         systemctl restart sshd.service
-
 fi
 # mkdir /root/.ssh
 # cd /root/.ssh

@@ -12,11 +12,11 @@
       apt: upgrade=dist force_apt_get=yes
   # Apache Instalacion
     - name: Instalacion Y Configuracion de Apache
-      apt: name=apache2 state=latest
+      apt: name=nginx state=latest
       become: yes
     - name: Configuracion de Servicios
       service:
-        name: apache2
+        name: nginx
         state: started
         enabled: yes
       become: yes
@@ -35,10 +35,7 @@
       apt: name=php state=latest
       become: yes
     - name: Instalacion Y Configuracion de PHP
-      apt: name=libapache2-mod-php state=latest
-      become: yes
-    - name: Instalacion Y Configuracion de PHP
-      apt: name=php-curl state=latest
+      apt: name=php-fpm state=latest
       become: yes
     - name: Instalacion Y Configuracion de PHP
       apt: name=php-mysql state=latest

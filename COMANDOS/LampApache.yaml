@@ -32,14 +32,14 @@
       become: yes
   # Instalacion PHP
     - name: Instalacion Y Configuracion de PHP
-      apt: name=php7.3 state=latest
+      apt: name=php state=latest
       become: yes
     - name: Instalacion Y Configuracion de PHP
-      apt: name=libapache2-mod-php7.3 state=latest
+      apt: name=libapache2-mod-php state=latest
       become: yes
     - name: Instalacion Y Configuracion de PHP
-      apt: name=php7.3-curl state=latest
+      apt: name=php-curl state=latest
       become: yes
     - name: Instalacion Y Configuracion de PHP
-      apt: name=php7.3-mysql state=latest
+      apt: name=php-mysql state=latest
       become: yes
