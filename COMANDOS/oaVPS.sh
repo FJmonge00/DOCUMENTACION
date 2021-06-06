@@ -9,6 +9,7 @@ if [ ! -s $SALIDAVPS/salidaVPS.txt ] # Si no tiene datos (Vacio)
         echo "Ningun VPS en cola: $(date +"%d-%m-%Y-%R:%S")" > $SALIDAVPS/salidaVPS.txt
         echo "Proximo lanzamiento: $(date --date="+3 min" +"%d-%m-%Y-%R:%S")" >> $SALIDAVPS/salidaVPS.txt
     else
+        echo '[salidaVPS]' > $SALIDAVPS/salidaVPS.conf
         echo "$(date +"%d-%m-%Y-%R:%S")" >> $OAVPSLOG/VPSLanzados.log
         echo "" >> $OAVPSLOG/VPSLanzados.log
         cat $SALIDAVPS/salidaVPS.txt >> $OAVPSLOG/VPSLanzados.log
@@ -18,3 +19,8 @@ if [ ! -s $SALIDAVPS/salidaVPS.txt ] # Si no tiene datos (Vacio)
             ./gruaVPS.sh ${cliente} ${id} ${so} ${vcpu} ${vram} ${disco} ${plan} ${notificar} ${email}        
         done < $SALIDAVPS/salidaVPS.txt
 fi
+if [ $so in 'Debian10','UbuntuServer2004'] 
+then
+    
+fi
+ansible-playbook -i $SALIDAVPS/salidaVPS.conf $plan.yaml

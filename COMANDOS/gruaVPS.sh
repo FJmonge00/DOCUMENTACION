@@ -8,8 +8,8 @@ disco=$6
 Plan=$7
 notificar=$8
 email=$9
-contrasena=$(cat /dev/urandom | tr -dc [:upper:][:lower:][:digit:] | head -c32)
-# contrasena=Coria21
+# contrasena=$(cat /dev/urandom | tr -dc [:upper:][:lower:][:digit:] | head -c32)
+contrasena=Coria21
 if [ ! -d $OAVPSLOG/$cliente ]
     then
         mkdir -p $OAVPSLOG/$cliente
@@ -58,7 +58,13 @@ do
     ip=$(virsh domifaddr --domain "$cliente-$id" | grep "192.168" | awk '{print $4}' | sed 's/\/24//g') # IP DE LA MAQUINA
     conexion=$(ping -c1 $ip 2> /dev/null | grep "1 packets transmitted, 1 received, 0% packet loss" |wc -l)
     case $conexion in
-        1) sshpass -p $contrasena ssh-copy-id -i ~/.ssh/id_rsa.pub -o StrictHostKeyChecking=no root@$ip -p 3022 2> /dev/null 1>> $OAVPSLOG/$cliente/$cliente-$id/preparacion.log
+        1) if [ $so == 'Centos8' ]
+            then
+                sshpass -p $contrasena ssh-copy-id -i ~/.ssh/id_rsa.pub -o StrictHostKeyChecking=no root@$ip -p 22 2> /dev/null 1>> $OAVPSLOG/$cliente/$cliente-$id/preparacion.log
+            else
+                sshpass -p $contrasena ssh-copy-id -i ~/.ssh/id_rsa.pub -o StrictHostKeyChecking=no root@$ip -p 3022 2> /dev/null 1>> $OAVPSLOG/$cliente/$cliente-$id/preparacion.log
+
+        fi
         # echo "$contrasena" > contrasena-$id.txt
         #    exit | sshpass -f contrasena-$id.txt ssh root@$ip -p 3022 #2> /dev/null
         #    sshpass -f contrasena-$id.txt ssh-copy-id root@$ip -p 3022 #2> /dev/null
@@ -74,6 +80,7 @@ done
 echo "$ip" >> datos.txt 2> /dev/null 1>> $OAVPSLOG/$cliente/$cliente-$id/preparacion.log
 echo "VPS Preparado: $(date +"%d-%m-%Y-%R:%S")" 2> /dev/null 1>> $OAVPSLOG/$cliente/$cliente-$id/preparacion.log
 echo "" 2> /dev/null 1>> $OAVPSLOG/$cliente/$cliente-$id/preparacion.log
+echo $ip >> $SALIDAVPS/salidaVPS.conf
 # Preparacion del Correo Bienvenida
 if [ $notificar -gt 0 ]
     then

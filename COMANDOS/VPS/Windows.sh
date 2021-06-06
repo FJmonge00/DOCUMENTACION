@@ -51,18 +51,18 @@ esperar=1
 while [ $esperar -eq 1 ]
 do
     ip=$(virsh domifaddr --domain "$cliente-$id" | grep "192.168" | awk '{print $4}' | sed 's/\/24//g') # IP DE LA MAQUINA
-    case $conexion in
-        1) #sshpass -p $contrasena ssh-copy-id -i ~/.ssh/id_rsa.pub -o StrictHostKeyChecking=no root@$ip -p 3022 2> /dev/null 1>> $OAVPSLOG/$cliente/$cliente-$id/preparacion.log
-        # echo "$contrasena" > contrasena-$id.txt
-        #    exit | sshpass -f contrasena-$id.txt ssh root@$ip -p 3022 #2> /dev/null
-        #    sshpass -f contrasena-$id.txt ssh-copy-id root@$ip -p 3022 #2> /dev/null
-           #rm contrasena-$id.txt --force
+    # case $conexion in
+    #     1) #sshpass -p $contrasena ssh-copy-id -i ~/.ssh/id_rsa.pub -o StrictHostKeyChecking=no root@$ip -p 3022 2> /dev/null 1>> $OAVPSLOG/$cliente/$cliente-$id/preparacion.log
+    #     # echo "$contrasena" > contrasena-$id.txt
+    #     #    exit | sshpass -f contrasena-$id.txt ssh root@$ip -p 3022 #2> /dev/null
+    #     #    sshpass -f contrasena-$id.txt ssh-copy-id root@$ip -p 3022 #2> /dev/null
+    #        #rm contrasena-$id.txt --force
            esperar=0
-        ;;
-        *) sleep 2
-           esperar=1
-        ;;
-    esac
+    #     ;;
+    #     *) sleep 2
+    #        esperar=1
+    #     ;;
+    # esac
 done
 # echo "ANSIBLE: $Plan"
 echo "$ip" >> datos.txt 2> /dev/null 1>> $OAVPSLOG/$cliente/$cliente-$id/preparacion.log
