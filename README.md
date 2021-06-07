@@ -1,6 +1,8 @@
 # Arquitectura de Orquestacion para Hosting (OA)
 
-## Descripción del proyecto.
+![titulo](./imagenes/titulo.png)
+
+## Descripción del proyecto.📣
 
 En este proyecto he desarrollado una pequeña arquitectura que he autodenominado la OA (Orchestration Area) que permite la automatización y despliegue de Servicios y Maquinas Virtuales (VPS), semejantes a las cuales ofrecería un hosting.
 
@@ -15,13 +17,13 @@ Podemos diferenciar los ""productos"" que podríamos desplegar con la OA en 2 gr
 
 Para los VPS se levantarán maquinas utilizando un **hipervisor de Tipo 1** como es **KVM**, (Máquina Virtual Basada en Kernel): KVM está integrado en el Kernel de Linux.Permite convertir el kernel de Linux en un hipervisor. permitiendo crear maquinas virutales con **mínimas perdidas** posibles dando **acceso directo al hardware** consiguiendo un **rendimiento casi bare-metal**. KVM es un hipervisor que pertenece a una comunidad **Open Source**, lo que lo convierte en una opción ideal para mi entorno. Estas máquinas virtuales serán orquestadas por **Ansible** para aquellas tareas administrativas que se le realicen a los VPS antes de su entrega.
 
-![cms](./imagenes/vps.png)
+![vps](./imagenes/vps.png)
 
 El objetivo es que el despliegue este automatizado y gestionado gracias a la OA y sus componentes en la cual trabajar principalmente.
 
-## [Introducción teórica](hojas/introTeorica.md)
-## [Configuración de la red (Mapa de red)](hojas/ConfiguracionDeLaRed.md).
-## [Herramietas y tecnologías utilizadas.](hojas/tecnologias.md)
-## [Desarrollo del proyecto con detalle.](hojas/desarolloProyecto/desarrolloProyecto.md)
-## [Conclusiones y dificultades encontradas en el proyecto.](hojas/concluYdificultades.md)
-## [Referencias utilizadas.](hojas/desarolloProyecto/referencias.md)
+## [Introducción teórica.📖](hojas/introTeorica.md)
+## [Configuración de la red (Mapa de red).🔌](hojas/ConfiguracionDeLaRed.md)
+## [Herramietas y tecnologías utilizadas.🛠️👨‍💻](hojas/tecnologias.md)
+## [Desarrollo del proyecto con detalle. 📝](hojas/desarolloProyecto/desarrolloProyecto.md)
+## [Conclusiones y dificultades encontradas en el proyecto.💭](hojas/concluYdificultades.md)
+## [Referencias utilizadas.🔍](hojas/desarolloProyecto/referencias.md)
