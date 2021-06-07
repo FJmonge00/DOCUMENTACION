@@ -6,4 +6,4 @@
 ## [Configuraciones de MariaDB.📖](./ConfiguracionesMariaDB.md)
 
 ________________________________________
-*[Volver al atrás...](./README.md)*
+*[Volver al atrás...](../README.md)*
