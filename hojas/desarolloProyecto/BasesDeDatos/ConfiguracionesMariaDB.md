@@ -1,4 +1,4 @@
-# Configuraciones de MariaDB
+# Configuraciones de MariaDB 📖
 
 ## Configuracion del fichero my.cnf
 
