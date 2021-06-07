@@ -1,4 +1,4 @@
-# Crear Usuarios y Bases De Datos.book
+# Crear Usuarios y Bases De Datos 📖
 **Por seguridad** no utilizaré usuario root sino un usuario con todos los privilegios sobre la base de datos en la que deba trabajar (Hosting).
 
 ## Crear usuario
@@ -14,7 +14,7 @@ CREATE USER 'thor'@'localhost' IDENTIFIED BY 'Coria21';
 CREATE DATABASE hosting;
 ```
 
-## Privilegios
+## Privilegios de usuarios
 
 ```SQL
 GRANT ALL PRIVILEGES ON hosting.* TO 'zeus'@'localhost';

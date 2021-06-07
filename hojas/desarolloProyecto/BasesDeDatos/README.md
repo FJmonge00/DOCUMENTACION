@@ -2,4 +2,4 @@
 
 ## [Reinstalacion y borrado completo de MariaDB-MySQL.📖](./DesisntalarYBorradoMariaDB-MySQL.md)
 ## [Crear Usuarios y Bases De Datos.📖](./CrearUsuarioBaseDeDatos.md)
-## [Crear Tablas y Datos.📖](./CrearBaseDatosYTablas.md)
+## [Definición de Tablas y Datos.📖](./CrearBaseDatosYTablas.md)
