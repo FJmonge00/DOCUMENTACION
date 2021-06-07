@@ -11,10 +11,9 @@ El enfoque del proyecto esta en el despliegue automatizado y el bajo impacto com
 Podemos diferenciar los ""productos"" que podríamos desplegar con la OA en 2 grandes tipos:
 
 - ***Servicios***: Serán aquellos CMS mas usados a día de hoy; *Wordpress, Joomla, PrestaShop...* Estos Servicios estarán **contenerizados** en un cluster utilizando la tecnología de **Docker** y Orquestados por la tecnología de **Kubernetes**, ambas tecnologías pertenecen a una comunidad **Open Source**. Al tener los servicios contenerizados conseguimos unas **Pérdidas por virtualización mínimas**, ya que no virtualizamos un sistema operativo completo por cada servicio; ***aislamiento, seguridad, escalabilidad de los servicios*** y por ultimo pero no menos importante nos brinda la posibilidad de automatizar el despliegue de los servicios.
-- ***VPS***: En el caso de **VPS** serán máquinas virtuales completas, estás pueden ser **desplegadas** con una configuración estándar: (Entorno **LAMP,LEMP,Docker,Etc).**
-
 ![cms](./imagenes/cms.png)
 
+- ***VPS***: En el caso de **VPS** serán máquinas virtuales completas, estás pueden ser **desplegadas** con una configuración estándar: (Entorno **LAMP,LEMP,Docker,Etc).**
 Para los VPS se levantarán maquinas utilizando un **hipervisor de Tipo 1** como es **KVM**, (Máquina Virtual Basada en Kernel): KVM está integrado en el Kernel de Linux.Permite convertir el kernel de Linux en un hipervisor. permitiendo crear maquinas virutales con **mínimas perdidas** posibles dando **acceso directo al hardware** consiguiendo un **rendimiento casi bare-metal**. KVM es un hipervisor que pertenece a una comunidad **Open Source**, lo que lo convierte en una opción ideal para mi entorno. Estas máquinas virtuales serán orquestadas por **Ansible** para aquellas tareas administrativas que se le realicen a los VPS antes de su entrega.
 
 ![vps](./imagenes/vps.png)
