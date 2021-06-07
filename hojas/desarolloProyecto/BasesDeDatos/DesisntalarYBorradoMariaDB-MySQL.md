@@ -1,4 +1,4 @@
-# Reinstalacion y borrado completo de MariaDB-MySQL.📖 
+# Reinstalación y borrado completo de MariaDB-MySQL.📖 
 
 ## MariaDB
 
