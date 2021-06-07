@@ -24,6 +24,6 @@ El objetivo es que el despliegue este automatizado y gestionado gracias a la OA 
 ## [Introducción teórica.📖](hojas/introTeorica.md)
 ## [Configuración de la red (Mapa de red).🔌](hojas/ConfiguracionDeLaRed.md)
 ## [Herramietas y tecnologías utilizadas.🛠️👨‍💻](hojas/tecnologias.md)
-## [Desarrollo del proyecto con detalle. 📝](hojas/desarolloProyecto/desarrolloProyecto.md)
+## [Desarrollo del proyecto con detalle. 📝](hojas/desarolloProyecto/README.md)
 ## [Conclusiones y dificultades encontradas en el proyecto.💭](hojas/concluYdificultades.md)
 ## [Referencias utilizadas.🔍](hojas/referencias.md)
