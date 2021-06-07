@@ -40,7 +40,7 @@ ALTER TABLE `hosting`.`vps` AUTO_INCREMENT=9500;
 ALTER TABLE `servicios` ADD `notificar` BOOLEAN NOT NULL AFTER `cliente`, ADD `email` VARCHAR(80) NULL AFTER `notificar`;
 ```
 
-> Con _AFTER_ consegimos que las nuevas columnas se añadan en la ubicación que requiero para que no afecte a los distintos programas, scripts o servicios que conforman la **OA**. _Hay que extaerse y estudiar cada cambio que se haga en entidades como esta ya que el mas minimo cambio puede afectar al desarollo natural de programas y servicios que depende de esta. SOBRE TODO SI ESTE SE ENCUENTRA EN PRODUCCIÓN COMO ES EL CASO_
+> Con _AFTER_ conseguimos que las nuevas columnas se añadan en la ubicación que requiero para que no afecte a los distintos programas, scripts o servicios que conforman la **OA**. _Hay que extraerse y estudiar cada cambio que se haga en entidades como esta ya que el mas mínimo cambio puede afectar al desarrollo natural de programas y servicios que depende de esta. SOBRE TODO SI ESTE SE ENCUENTRA EN PRODUCCIÓN COMO ES EL CASO_
 
 ![imagen](./imagenes/cambiosBBDD.jpg)
 
@@ -59,7 +59,7 @@ Es importante tener registrados los datos de los servicios que tengamos de los c
 
 Para insertar estos datos haremos uso de una interfaz web PHP.
 
-Ver Formularios
+*Ver web y formualarios en los siguientes puntos*
 
 ________________________________________
 *[Volver al atrás...](./README.md)*
