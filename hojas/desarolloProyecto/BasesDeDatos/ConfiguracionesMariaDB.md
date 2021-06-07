@@ -26,3 +26,5 @@ password=Coria21
 
 ![sintaxis](./imagenes/UsuarioOA.jpg)
 
+________________________________________
+*[Volver al atrás...](./README.md)*
