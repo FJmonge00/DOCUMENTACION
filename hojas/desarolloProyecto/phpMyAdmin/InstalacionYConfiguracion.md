@@ -37,7 +37,7 @@ chown www-data -R /var/www/html/phpmyadmin/
 
 ### Preparar la base de datos de phpMyAdmin
 
-Es necesario crear algunas tablas para del sistema para el funcinamiento de phpMyAdmin
+Es necesario crear algunas tablas del sistema para el funcinamiento de phpMyAdmin
 
 ```bash
 mysql -u root -p
