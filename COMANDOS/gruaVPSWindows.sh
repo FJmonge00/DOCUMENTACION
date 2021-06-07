@@ -6,8 +6,8 @@ vCPU=$4
 vRAM=$5
 DiscoAnadido=$6
 Plan=$7
-# contrasena=$(cat /dev/urandom | tr -dc [:upper:][:lower:][:digit:] | head -c32)
-contrasena=Coria21
+contrasena=$(cat /dev/urandom | tr -dc [:upper:][:lower:][:digit:] | head -c32)
+# contrasena=Coria21
 if [ ! -d $OAVPSLOG/$cliente ]
     then
         mkdir -p $OAVPSLOG/$cliente
