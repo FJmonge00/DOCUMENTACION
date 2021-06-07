@@ -24,7 +24,7 @@ GRANT SELECT ON hosting.vps TO 'thor'@'localhost';
 FLUSH PRIVILEGES; -- Cargar los privilegios
 ```
 
-> Para las repetidas consultas que realizará la oa utilizaremos un usuario con permisos únicamente de lectura sobre la base de datos y en concreto únicamente sobre la base de datos "hosting "en unas determinadas tablas que son; "servicios" y vps. Es Recomendable esta metodología por seguridad pese a que sola existe 2 grandes tabla en esta base de datos pero si en algún momento quisiéramos escalar esto y crear nuevas tablas estaría afectando también a estas.
+> Para las repetidas consultas que realizará la oa utilizaremos un usuario con permisos únicamente de lectura sobre la base de datos y en concreto únicamente sobre la base de datos "hosting" y en unas determinadas tablas que son; "servicios" y "vps". Es Recomendable esta metodología por seguridad pese a que sola existe 2 grandes tablas en esta base de datos pero si en algún momento quisiéramos escalar esto y crear nuevas tablas nuevas estaría afectando también a estas.
 
 ________________________________________
 *[Volver al atrás...](./README.md)*
