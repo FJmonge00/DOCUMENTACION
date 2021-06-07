@@ -26,4 +26,4 @@ El objetivo es que el despliegue este automatizado y gestionado gracias a la OA 
 ## [Herramietas y tecnologías utilizadas.🛠️👨‍💻](hojas/tecnologias.md)
 ## [Desarrollo del proyecto con detalle. 📝](hojas/desarolloProyecto/desarrolloProyecto.md)
 ## [Conclusiones y dificultades encontradas en el proyecto.💭](hojas/concluYdificultades.md)
-## [Referencias utilizadas.🔍](hojas/desarolloProyecto/referencias.md)
+## [Referencias utilizadas.🔍](hojas/referencias.md)
