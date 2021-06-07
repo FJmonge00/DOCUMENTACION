@@ -1,4 +1,4 @@
-# Desistalación y borrado de B.D COMPLETO de MariaDB ó MySQL 
+# Reinstalacion y borrado completo de MariaDB-MySQL.📖 
 
 ## MariaDB
 
