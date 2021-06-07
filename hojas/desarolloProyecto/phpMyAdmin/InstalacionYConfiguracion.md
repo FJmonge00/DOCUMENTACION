@@ -55,3 +55,6 @@ exit
 ```bash
 cat /var/www/html/phpmyadmin/sql/create_tables.sql | mysql -u pma -p # SQL por defecto que trae phpMyAdmin
 ```
+
+________________________________________
+*[Volver al atrás...](../README.md)*
