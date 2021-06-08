@@ -1,4 +1,4 @@
-# Scripting
+# KVM-QEMU
 
 ## VPS
 
@@ -18,13 +18,16 @@ cat /etc/environment
 OA="/var/lib/oa" # Directorio raíz de la OA
 BASEVPS="/home/VPS/base" # Almacen de Máquinas Base para generar nuevos VPS 
 VPS="/home/VPS/produccion" # Almacen de VPS activos de los clientes
-VPS="/home/VPS/produccion" # Almacen de VPS activos de los clientes
 SALIDAVPS="/home/VPS/salida" # Datos de VPS que se van a lanzar próximamente
 OAVPSLOG="/var/log/hosting/clientes" # Logs de proceso de salida o lanzamiento del VPS.
 CORREO="/var/lib/oa/correo" # Almacen de mensajes de correos de Serivios y VPS
 ```
+_He tenido que cambiar las rutas de los Pools de las maquinas virtuales por problemas de espacio_
 
-### [Máquinas Bases](mvBase.md)
+Las rutas Originales son: `$OA/VPS/produccion`
+Las rutas Originales son: `$OA/VPS/base`
+
+### [Máquinas Bases](./maquinasBase/mvBase.md)
 
 ________________________________________
 *[Volver al atrás...](../README.md)*
