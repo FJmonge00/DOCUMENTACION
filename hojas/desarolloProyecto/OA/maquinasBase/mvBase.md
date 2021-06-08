@@ -15,3 +15,7 @@ Estás Máquinas serán clonadas y tratadas para generar un VPS totalmente Opert
 ## [Máquina Base Centos 8](centos8.md)
 
 ## [Máquina Base Windows Server 2019](WS2019.md)
+
+## [Configuración General de SSH para Máquinas Linux](sshLinux.md)
+
+
