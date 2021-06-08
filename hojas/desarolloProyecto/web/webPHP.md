@@ -129,7 +129,7 @@ La web de Control son;HTML,CSS y PHP. Desde el Panel de Control de Servicios pod
 ![GIF](./imagenes/lanzar.gif)
 
 ### ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
-### [ → CLIC AQUÍ PARA VER WEBS PHP ← ](./oa)
+### [ → CLIC AQUÍ PARA VER WEBS PHP ← ](./hosting/oa)
 ### ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 
 Una vez indicado el Servicio y su versión la OA realizará la consulta SQL y levantará el contenedor de Docker en el Clúster con Kubernetes.
