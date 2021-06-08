@@ -57,7 +57,7 @@
 				<br>
 				<br>
 				<b>Memoria (vRAM):</b>
-				<input type="number" min="1" max="8" name="vram" required placeholder="2"> 
+				<input type="number" min="1" max="20" name="vram" required placeholder="2"> 
 				<br>
 				<br>
 				<b>Espacio en Disco (Nvme):</b>
