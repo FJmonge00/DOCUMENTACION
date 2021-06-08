@@ -2,7 +2,7 @@
 
 ## Pagina Principal
 
-La web es puramente HTML y CSS, desde aquí podremos acceder a los distintos paneles de web de administracion de la OA y a phpMyAdmin
+La web principal es puramente HTML y CSS, desde aquí podremos acceder a los distintos paneles de web de administracion de la OA y a phpMyAdmin
 
 ![foto](./imagenes/webPrincipal.jpg)
 
@@ -48,7 +48,7 @@ La web es puramente HTML y CSS, desde aquí podremos acceder a los distintos pan
 
 ### Panel de Administración de VPS
 
-En el Panel de VPS podremos:
+La web de Control son;HTML,CSS y PHP. Desde el Panel de Control de VPS podremos:
 
 -  Ver los VPS que se encuentran actualmente activos y registrados en la Base de Datos.
 
@@ -82,6 +82,9 @@ En el Panel de VPS podremos:
             - Entorno Desarollo Docker (Entorno Docker opertivo)
         - Acción de Notificar via email al cliente (Envio de Datos de Acceso, credenciales, mensaje de bienvenida, etc).
         - La direccion de correo a la que queremos notificarlo.
+### ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+### [ → CLIC AQUÍ PARA VER WEBS PHP ← ](./oa)
+### ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 
 Una vez indicada la condiguracion de la maquina y lanzada la OA realizará la consulta SQL y la levantará en KVM-QEMU.
 
@@ -89,7 +92,7 @@ _Ver en el punto de la OA_
 
 ### Panel de Administración de Servicios
 
-En el Panel de Servicios podremos:
+La web de Control son;HTML,CSS y PHP. Desde el Panel de Control de Servicios podremos:
 
 -  Ver los Servicios que se encuentran actualmente activos y registrados en la Base de Datos.
 
