@@ -29,7 +29,7 @@ apt install libosinfo-bin
 
 ![foto](./imagenes/mostrar-sistemas-opertivos.jpg)
 
-### Para Ubuntu,Debian,...
+### Todos los Sistemas Opertivos Disponibles
 
 ```bash
 osinfo-query os | less
