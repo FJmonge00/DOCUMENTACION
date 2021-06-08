@@ -84,7 +84,7 @@ La web de Control VPS esta hecha con; HTML,CSS y PHP. Desde el Panel de Control 
         - Acción de Notificar via email al cliente (Envio de Datos de Acceso, credenciales, mensaje de bienvenida, etc).
         - La direccion de correo a la que queremos notificarlo.
 
-![GIF](./imagenes/lanzar.gif)
+![GIF](./imagenes/lanzarVPS.gif)
 
 ### ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 ### [ → CLIC AQUÍ PARA VER WEBS PHP del panel de VPS ← ](./hosting/oaVPS)
@@ -130,7 +130,7 @@ La web de Control VPS esta hecha con; HTML,CSS y PHP. Desde el Panel de Control 
         - Acción de Notificar via email al cliente (Envio de Datos de Acceso, credenciales, mensaje de bienvenida, etc).
         - La direccion de correo a la que queremos notificarlo.
 
-![GIF](./imagenes/lanzarVPS.gif)
+![GIF](./imagenes/lanzar.gif)
 
 ### ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 ### [ → CLIC AQUÍ PARA VER WEBS PHP del panel de Servicios ← ](./hosting/oa)
