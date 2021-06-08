@@ -48,4 +48,11 @@ virt-install --name BaseCentos8 \
 ![foto](../imagenes/centos4.jpg)
 ![foto](../imagenes/centos5.jpg)
 
+## Instalación SSH Centos
+
+![foto](../imagenes/installsshCentos.jpg)
+![foto](../imagenes/installSshCentos2.jpg)
+
+
+
 
