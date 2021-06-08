@@ -93,7 +93,7 @@ _Ver en el punto de la OA_
 
 ### Panel de Administración de Servicios
 
-La web de Control son;HTML,CSS y PHP. Desde el Panel de Control de Servicios podremos:
+La web de Control VPS esta hecha con; HTML,CSS y PHP. Desde el Panel de Control de Servicios podremos:
 
 -  Ver los Servicios que se encuentran actualmente activos y registrados en la Base de Datos.
 

@@ -1,8 +1,8 @@
 # En la parte superior se encuentan los ficheros PHP utilizados para interacturar via PHP con la OA y la Base de Datos
 
-# Webs que conforman los panel de Administración de Servicios
+# Webs que conforman el Panel de Administración de Servicios
 
-## Pagina Principal del Panel.
+## Pagina Principal del Panel de Administración de Servicios.
 
 En esta web es donde interactua el Administrador con la OA y la base de datos. 
 
@@ -110,7 +110,7 @@ En esta web podremos:
 </html>
 ```
 
-## CSS del Panel
+## CSS del Panel de Administración de Servicios
 
 ```css
 .Nuevo, .Busqueda, .Mostrar {
@@ -150,6 +150,80 @@ html,body {
 #si,#no {
   width: auto;
 }
+```
+
+## PHP para ver Todos los Servicios actuales y registrados en la Base de datos (`verTodosServicios.php`)
+
+```php
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Busqueda Por id</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<style>
+			body {
+				background: rgb(23,182,184);
+				background: linear-gradient(0deg, rgba(23,182,184,1) 0%, rgba(233,162,9,1) 100%);
+				}
+			table {
+			width: 100%;
+			}
+			tr {
+				border: 2px solid black; 
+				background: white;
+			}
+			h2 {
+					text-align: center
+			}
+			th, td {
+			text-align: center;
+			padding: 10px
+			}
+			tr:nth-child(even) {background-color: #AED6F1;}
+		</style>
+	</head>
+	<body>
+		<h2> Servicios Actuales </h2>
+		<table>
+			<tr>
+				<td>Identificador</td>
+				<td>Aplicacion</td>
+				<td>Version</td>
+				<td>Cliente</td>
+				<td>Fecha</td>
+			</tr>
+			<?php
+			include("ejecutaSelect.php");
+			//En $res está guardada el resultado de ejecutaSelect.php
+			foreach($res as $registros){ ?>
+			<tr>
+				<td><?php echo $registros['id']?></td>
+				<td><?php echo $registros['app']?></td>
+				<td><?php echo $registros['version']?></td>
+				<td><?php echo $registros['cliente']?></td>
+				<td><?php echo $registros['fecha']?></td>
+			</tr>
+			<?php }?>
+		</table>
+	</body>
+</html>
+```
+
+## PHP que utilizará `verTodosServicios.php` para obtener los registros _(Depende de conexion.php)_.
+
+Realmente esta es la parte del PHP que consulta los datos a MariaDB, `verTodosServicios.php` únicamente muestra lo que obtiene este PHP con la `mysqli_query`:
+
+```php
+<?php
+include("conexion.php"); # Conexion a la base de datos
+//Devuelve todos los registros de una tabla
+function consulta($conn,$query){
+	$resultado = mysqli_query($conn,$query);
+	return $resultado;
+}
+$res = consulta($conn,"SELECT * FROM servicios");
+mysqli_close($conn); //cierra la conexion con MariaDB
+?>
 ```
 
 ## PHP para buscar por el ID del Servicio _(Depende del conexion.php que es el Punto siguiente)_
@@ -208,9 +282,31 @@ html,body {
 </html>
 ```
 
+## PHP que utilizará `buscarPorID.php` para obtener el registro _(Depende del conexion.php)_.
+
+Realmente esta es la parte del PHP que consulta los datos a MariaDB, consulta el registro de `ID` con valor `X`, `buscarPorID.php` únicamente muestra lo que obtiene este PHP con la `mysqli_query`. (El id que consultará es el indicado en el form)
+
+```php
+<?php
+//Recogida de variables
+$identificador =$_POST["identificador"]; # Formulario
+include("conexion.php"); # Conexion Base de datos
+function consulta($conn,$query){
+	$resultado = mysqli_query($conn,$query);
+	return $resultado;
+}
+$res = consulta($conn,"SELECT * FROM servicios WHERE id='$identificador'");
+mysqli_close($conn); //cierra la conexion
+?>
+```
+
 ## PHP Para conectarsese a MariaDB y seleccionar la Base de Datos
 
-Conecta con MariaDB que se encuentra en la misma pagina donde se ejecuta este PHP `127.0.0.1`
+Conecta con MariaDB que se encuentra en el mismo servidor donde se ejecuta este PHP `127.0.0.1` ó `localhost`, mediante el usuario creado anteriomente llamado `zeus` y contraseña en este caso `Coria21`.
+
+Si la conexion se realiza correctamente al servidor de datos en 127.0.0.1 con `mysqli_select_db` indicamos que utilice la Base de datos `hosting`
+
+_La informacion de los usuarios y Bases de datos esta en el primer punto en: → [`Bases de datos y configuración`](../../../BasesDeDatos/README.md). ←_
 
 ```php
 <?php
@@ -228,41 +324,6 @@ function conexion(){
    return $conn;
 }
 $conn=conexion();
-?>
-```
-
-## PHP que utilizará `verTodosServicios.php` para obtener los registros _(Depende del conexion.php)_.
-
-Realmente esta es la parte del PHP que consulta los datos a MariaDB, `verTodosServicios.php` únicamente muestra lo que obtiene este PHP con la `mysqli_query`:
-
-```php
-<?php
-include("conexion.php"); # Conexion a la base de datos
-//Devuelve todos los registros de una tabla
-function consulta($conn,$query){
-	$resultado = mysqli_query($conn,$query);
-	return $resultado;
-}
-$res = consulta($conn,"SELECT * FROM servicios");
-mysqli_close($conn); //cierra la conexion con MariaDB
-?>
-```
-
-## PHP que utilizará `buscarPorID.php` para obtener el registro _(Depende del conexion.php)_.
-
-Realmente esta es la parte del PHP que consulta los datos a MariaDB, registro del `ID` con valor `X`, `buscarPorID.php` únicamente muestra lo que obtiene este PHP con la `mysqli_query`:
-
-```php
-<?php
-//Recogida de variables
-$identificador =$_POST["identificador"]; # Formulario
-include("conexion.php"); # Conexion Base de datos
-function consulta($conn,$query){
-	$resultado = mysqli_query($conn,$query);
-	return $resultado;
-}
-$res = consulta($conn,"SELECT * FROM servicios WHERE id='$identificador'");
-mysqli_close($conn); //cierra la conexion
 ?>
 ```
 
