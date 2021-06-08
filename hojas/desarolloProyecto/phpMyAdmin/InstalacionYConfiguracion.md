@@ -13,7 +13,7 @@ apt -y install php7.3-bz2 php7.3-mbstring php7.3-xml php7.3-zip # Ver version de
 systemctl reload apache2
 ```
 
-> Si no sabemos la versión de apache disponible para nuestra distribucion podemos remplazar los nombres todos los paquetes con solo php sin indicar la vesión Ej: `apt install php-xml` en vez de `apt install php7.3-xml` 
+> Si no sabemos la versión de apache disponible para nuestra distribucion podemos remplazar los nombres todos los paquetes con solo php sin indicar la vesión Ej: `apt install php-xml` en vez de `apt install php7.3-xml` el sistemo indicará la vesión más reciente por nosotros.
 
 ### Descarga de phpMyAdmin e ""instalacion"".
 

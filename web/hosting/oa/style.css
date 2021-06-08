@@ -1,0 +1,37 @@
+.Nuevo, .Busqueda, .Mostrar {
+    background: rgb(23,182,184);
+background: linear-gradient(0deg, rgba(23,182,184,1) 0%, rgba(233,162,9,1) 100%);
+    box-shadow: 10px 10px grey;
+    /* display: flex;
+    flex-direction: row; */
+}
+input {
+    width: 100%;
+  }
+  input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+  }
+  input[type=text]:focus {
+    background-color: lightblue;
+  }
+  select {
+    width: 100%;
+    padding: 16px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+  }
+  input[type=button], input[type=submit], input[type=reset] {
+    padding: 16px 32px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+html,body {
+    background-color: 250, 235, 215;
+}
+#si,#no {
+  width: auto;
+}
