@@ -1,6 +1,6 @@
 # En la parte superior se encuentan los ficheros PHP utilizados para interacturar via PHP con la OA y la Base de Datos
 
-# Webs que conforman los paneles de Administración
+# Webs que conforman los panel de Administración de Servicios
 
 ## Pagina Principal del Panel.
 
@@ -287,3 +287,6 @@ var_dump($res);
 mysqli_close($conn); //cierra la conexion
 ?>
 ```
+
+________________________________________
+*[Volver al atrás...](../../webPHP.md)*

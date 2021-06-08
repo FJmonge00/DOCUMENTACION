@@ -83,7 +83,7 @@ La web de Control son;HTML,CSS y PHP. Desde el Panel de Control de VPS podremos:
         - Acción de Notificar via email al cliente (Envio de Datos de Acceso, credenciales, mensaje de bienvenida, etc).
         - La direccion de correo a la que queremos notificarlo.
 ### ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
-### [ → CLIC AQUÍ PARA VER WEBS PHP ← ](./oa)
+### [ → CLIC AQUÍ PARA VER WEBS PHP del panel de VPS ← ](./hosting/oaVPS)
 ### ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 
 Una vez indicada la condiguracion de la maquina y lanzada la OA realizará la consulta SQL y la levantará en KVM-QEMU.
@@ -129,10 +129,10 @@ La web de Control son;HTML,CSS y PHP. Desde el Panel de Control de Servicios pod
 ![GIF](./imagenes/lanzar.gif)
 
 ### ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
-### [ → CLIC AQUÍ PARA VER WEBS PHP ← ](./hosting/oa)
+### [ → CLIC AQUÍ PARA VER WEBS PHP del panel de Servicios ← ](./hosting/oa)
 ### ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 
 Una vez indicado el Servicio y su versión la OA realizará la consulta SQL y levantará el contenedor de Docker en el Clúster con Kubernetes.
 
 ________________________________________
-*[Volver al atrás...](./README.md)*
+*[Volver al atrás...](../README.md)*
