@@ -1,6 +1,5 @@
-<<<<<<< HEAD
+# En la parte superior se encuentan los ficheros PHP utilizados para interacturar via PHP con la OA y la Base de Datos
 
-# En la parte superior se encuentan las distintas Webs PHP utilizadas para interacturar via PHP con la OA y la Base de Datos
 # Webs que conforman los paneles de Administración
 
 ## Pagina Principal del Panel.
@@ -154,7 +153,6 @@ html,body {
 ```
 
 ## PHP para buscar por el ID del Servicio _(Depende del conexion.php que es el Punto siguiente)_
-
 ```php
 <html>
 	<head>
@@ -233,7 +231,7 @@ $conn=conexion();
 ?>
 ```
 
-## PHP que utilizará `verTodosServicios.php` para obtener los registros.
+## PHP que utilizará `verTodosServicios.php` para obtener los registros _(Depende del conexion.php)_.
 
 Realmente esta es la parte del PHP que consulta los datos a MariaDB, `verTodosServicios.php` únicamente muestra lo que obtiene este PHP con la `mysqli_query`:
 
@@ -250,7 +248,7 @@ mysqli_close($conn); //cierra la conexion con MariaDB
 ?>
 ```
 
-## PHP que utilizará `buscarPorID.php` para obtener el registro.
+## PHP que utilizará `buscarPorID.php` para obtener el registro _(Depende del conexion.php)_.
 
 Realmente esta es la parte del PHP que consulta los datos a MariaDB, registro del `ID` con valor `X`, `buscarPorID.php` únicamente muestra lo que obtiene este PHP con la `mysqli_query`:
 
@@ -289,7 +287,3 @@ var_dump($res);
 mysqli_close($conn); //cierra la conexion
 ?>
 ```
-=======
-# ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
-# En la parte superior se encuentran las distintas Webs PHP utilizadas para interactuar vía PHP con la OA y la Base de Datos
->>>>>>> cd4c78fb2bbc8b944c2dddcf3c53f5eee13ccf63
