@@ -22,7 +22,7 @@ SALIDAVPS="/home/VPS/salida" # Datos de VPS que se van a lanzar próximamente
 OAVPSLOG="/var/log/hosting/clientes" # Logs de proceso de salida o lanzamiento del VPS.
 CORREO="/var/lib/oa/correo" # Almacen de mensajes de correos de Serivios y VPS
 ```
-### [Máquinas Bases](./maquinasBase/mvBase.md)
+## [Máquinas Bases](./maquinasBase/mvBase.md)
 
 ## [Explicación Parámetros KVM](ExpliParemetros.md)
 
