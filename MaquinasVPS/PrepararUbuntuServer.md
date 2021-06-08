@@ -33,9 +33,9 @@ virt-install \
 
 # Version Final
 
-wget -P $BASEVPS https://releases.ubuntu.com/20.04.2/ubuntu-20.04.2-live-server-amd64.iso
 
 ```bash
+wget -P $BASEVPS https://releases.ubuntu.com/20.04.2/ubuntu-20.04.2-live-server-amd64.iso
 virt-install --name BaseUbuntuServer2004 \
 --virt-type kvm \
 --hvm \
