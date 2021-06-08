@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 # En la parte superior se encuentan las distintas Webs PHP utilizadas para interacturar via PHP con la OA y la Base de Datos
 # Webs que conforman los paneles de Administración
@@ -288,3 +289,7 @@ var_dump($res);
 mysqli_close($conn); //cierra la conexion
 ?>
 ```
+=======
+# ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+# En la parte superior se encuentran las distintas Webs PHP utilizadas para interactuar vía PHP con la OA y la Base de Datos
+>>>>>>> cd4c78fb2bbc8b944c2dddcf3c53f5eee13ccf63
