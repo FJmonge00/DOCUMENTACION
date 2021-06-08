@@ -382,3 +382,6 @@ var_dump($res);
 mysqli_close($conn); //cierra la conexion con MariaDB
 ?>
 ```
+
+________________________________________
+*[Volver al atrás...](../../webPHP.md)*

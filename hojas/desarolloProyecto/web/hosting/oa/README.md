@@ -284,7 +284,7 @@ function consulta($conn,$query){
 }
 $res = consulta($conn,"INSERT INTO `servicios` (`app`,`version`, `cliente`, `notificar`,`email`) VALUES ('$app','$version', '$cliente','$notificar','$email');");
 var_dump($res);
-mysqli_close($conn); //cierra la conexion
+mysqli_close($conn); //cierra la conexion con MariaDB
 ?>
 ```
 
