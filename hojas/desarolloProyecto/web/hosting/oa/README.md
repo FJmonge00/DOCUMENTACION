@@ -9,6 +9,7 @@ En esta web es donde interactua el Administrador con la OA y la base de datos.
 En esta web podremos:
 - Acceder a los datos a través del form que tiene como `action` → `verTodosServicios.php`.
 - Buscar en la base de datos a través del form que tiene como `action` → `buscarPorID.php`.
+- Ver el ultimo vps lanzado con → `ultimoVPS.php`.
 - Insertar y lanzar un servicio a través del form que tiene como `action` → `insertRegistrosOA.php`.
 
 ```php

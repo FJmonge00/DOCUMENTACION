@@ -52,17 +52,17 @@ La web de Control VPS esta hecha con; HTML,CSS y PHP. Desde el Panel de Control 
 
 -  Ver los VPS que se encuentran actualmente activos y registrados en la Base de Datos.
 
-![foto](./imagenes/todosServicios.jpg)
-![foto](./imagenes/todosServicios2.jpg)
+![foto](./imagenes/todosVPS.jpg)
+![foto](./imagenes/todosVPS2.jpg)
 
 -  Buscar por Identificador un VPS que se encuentre activo y registrado en la Base de Datos.
 
-![foto](./imagenes/busquedaID.jpg)
-![foto](./imagenes/busquedaID2.jpg)
+![foto](./imagenes/busquedaIDVPS.jpg)
+![foto](./imagenes/busquedaIDVPS2.jpg)
 
 -  Ver el Identificador del ultimo VPS que se encuentra registrado en la Base de Datos.
 
-![foto](./imagenes/ultimoServicio.jpg)
+![foto](./imagenes/ultimoVPS.jpg)
 
 -  Lanzar una nueva Maquina Virtual o VPS registrandola en la Base de Datos.
     -  Podremos configurar:
@@ -83,6 +83,9 @@ La web de Control VPS esta hecha con; HTML,CSS y PHP. Desde el Panel de Control 
             - Entorno Desarollo Docker (Entorno con Docker instalado y opertivo)
         - Acción de Notificar via email al cliente (Envio de Datos de Acceso, credenciales, mensaje de bienvenida, etc).
         - La direccion de correo a la que queremos notificarlo.
+
+![GIF](./imagenes/lanzar.gif)
+
 ### ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 ### [ → CLIC AQUÍ PARA VER WEBS PHP del panel de VPS ← ](./hosting/oaVPS)
 ### ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
@@ -127,7 +130,7 @@ La web de Control VPS esta hecha con; HTML,CSS y PHP. Desde el Panel de Control 
         - Acción de Notificar via email al cliente (Envio de Datos de Acceso, credenciales, mensaje de bienvenida, etc).
         - La direccion de correo a la que queremos notificarlo.
 
-![GIF](./imagenes/lanzar.gif)
+![GIF](./imagenes/lanzarVPS.gif)
 
 ### ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 ### [ → CLIC AQUÍ PARA VER WEBS PHP del panel de Servicios ← ](./hosting/oa)
