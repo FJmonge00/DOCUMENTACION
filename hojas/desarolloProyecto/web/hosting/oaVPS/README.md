@@ -1,6 +1,6 @@
 # En la parte superior se encuentan los ficheros PHP utilizados para interacturar via PHP con la OA y la Base de Datos
 
-# Webs que conforman los paneles de Administración
+# Webs que conforman el Panel de Administración VPS
 
 ## Pagina Principal del Panel Administración VPS.
 
@@ -9,12 +9,13 @@ En esta web es donde interactua el Administrador con la OA y la base de datos.
 En esta web podremos:
 - Acceder a los datos a través del form que tiene como `action` → `verTodosVPS.php`.
 - Buscar en la base de datos a través del form que tiene como `action` → `buscarPorID.php`.
+- Ver el ultimo vps lanzado con → `ultimoVPS.php`.
 - Insertar y lanzar un VPS a través del form que tiene como `action` → `insertRegistrosOA.php`.
 
 ```php
 <html>
 	<head>
-		<title>Admin OA VPS</title>
+        <title>Admin OA VPS</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="utf-8"/>
@@ -38,8 +39,8 @@ En esta web podremos:
 				<input type="Reset" value="Limpiar">
 			</form>
 		</div>
-	<br>
-	<br>
+    	<br>
+    	<br>
 	<!-- <h1>________________________________________________________________________________________________</h1> -->
 	<div class=Nuevo>
 		<h2 style="text-align: center"> Ultimo VPS lanzado </h2>
@@ -126,7 +127,7 @@ En esta web podremos:
 ```css
 .Nuevo, .Busqueda, .Mostrar {
     background: rgb(23,182,184);
-background: linear-gradient(0deg, rgba(23,182,184,1) 0%, rgba(233,162,9,1) 100%);
+    background: linear-gradient(0deg, rgba(23,182,184,1) 0%, rgba(233,162,9,1) 100%);
     box-shadow: 10px 10px grey;
 }
   input[type=text] {
@@ -224,7 +225,7 @@ html,body {
 </html>
 ```
 
-## PHP que utilizará `verTodosVPS.php` para obtener los registros _(Depende del conexion.php)_.
+## PHP que utilizará `verTodosVPS.php` para obtener los registros _(Depende de conexion.php)_.
 
 Realmente esta es la parte del PHP que consulta los datos a MariaDB, `verTodosVPS.php` únicamente muestra lo que obtiene este PHP con la `mysqli_query`:
 
@@ -312,14 +313,14 @@ mysqli_close($conn); //cierra la conexion con MariaDB
 </html>
 ```
 
-## PHP que utilizará `buscarPorID.php` para obtener el registro indicado _(Depende del conexion.php)_.
+## PHP que utilizará `buscarPorID.php` para obtener el registro indicado _(Depende de conexion.php)_.
 
 Realmente esta es la parte del PHP que consulta los datos a MariaDB, consulta el registro de `ID` con valor `X`, `buscarPorID.php` únicamente muestra lo que obtiene este PHP con la `mysqli_query`. (El id que consultará es el indicado en el form)
 
 ```php
 <?php
 //Recogida de datos a consultar
-$identificador =$_POST["identificador"]; // Formulario
+$identificador = $_POST["identificador"]; // Formulario
 include("conexion.php");  // Conexion con MariaDB y Base de datos
 function consulta($conn,$query){
 	$resultado = mysqli_query($conn,$query);
@@ -334,9 +335,9 @@ mysqli_close($conn); //cierra la conexion con MariaDB
 
 Conecta con MariaDB que se encuentra en el mismo servidor donde se ejecuta este PHP `127.0.0.1` ó `localhost`, mediante el usuario creado anteriomente llamado `zeus` y contraseña en este caso `Coria21`.
 
-Si la conexion se realiza correctamente al servidor de datos en 127.0.0.1m con `mysqli_select_db` indicamos que utilice la Base de datos `hosting`
+Si la conexion se realiza correctamente al servidor de datos en 127.0.0.1 con `mysqli_select_db` indicamos que utilice la Base de datos `hosting`
 
-_La informacion de los usuarios y Bases de datos esta en el primer punto en: [`Bases de datos y configuración`](../../../BasesDeDatos/README.md)._
+_La informacion de los usuarios y Bases de datos esta en el primer punto en: → [`Bases de datos y configuración`](../../../BasesDeDatos/README.md). ←_
 
 ```php
 <?php
@@ -378,6 +379,6 @@ function consulta($conn,$query){
 }
 $res = consulta($conn,"INSERT INTO `vps` (`so`,`plan`,`cliente`,`vcpu`,`vram`,`disco`,`notificar`,`email`) VALUES ('$so','$plan','$cliente','$vcpu','$vram','$disco','$notificar','$email');");
 var_dump($res);
-mysqli_close($conn); //cierra la conexion
+mysqli_close($conn); //cierra la conexion con MariaDB
 ?>
 ```

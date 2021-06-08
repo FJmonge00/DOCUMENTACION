@@ -48,7 +48,7 @@ La web principal es puramente HTML y CSS, desde aquí podremos acceder a los dis
 
 ### Panel de Administración de VPS
 
-La web de Control son;HTML,CSS y PHP. Desde el Panel de Control de VPS podremos:
+La web de Control VPS esta hecha con; HTML,CSS y PHP. Desde el Panel de Control de VPS podremos:
 
 -  Ver los VPS que se encuentran actualmente activos y registrados en la Base de Datos.
 
@@ -76,10 +76,11 @@ La web de Control son;HTML,CSS y PHP. Desde el Panel de Control de VPS podremos:
             - Centos 8
             - Windows Server 2019
         - Plan del Hosting.
-            - Entorno LAMP (Apache, MariaDB, PHP 7.3)
-            - Entorno LEMP (Nginx, MariaDB, PHP 7.3)
+            - Entorno LAMP (Apache, MariaDB, PHP 7.3 ó 7.4)
+            - Entorno LEMP (Nginx, MariaDB, PHP 7.3 ó 7.4)
             - Entorno PostgreSQL 
-            - Entorno Desarollo Docker (Entorno Docker opertivo)
+            - Entorno MariaDB 
+            - Entorno Desarollo Docker (Entorno con Docker instalado y opertivo)
         - Acción de Notificar via email al cliente (Envio de Datos de Acceso, credenciales, mensaje de bienvenida, etc).
         - La direccion de correo a la que queremos notificarlo.
 ### ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
