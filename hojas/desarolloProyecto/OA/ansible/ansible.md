@@ -24,22 +24,5 @@ Los planes están definidos en una sería de playbooks de Ansible, que son aplic
 ## [Plan LEMP](lemp.md)
 ## [Plan Desarollo Docker Para Debian 10](dockerDebian.md) 
 ## [Plan Desarollo Docker Para Ubuntu Server 20.04](dockerUbuntu.md) 
-
-
-```conf
-OA="/var/lib/oa"  # Directorio raíz de la OA
-BASEK8S="/var/lib/oa/Kubernetes/base" # Almacen de ficheros YAML Base para generar nuevos servicios 
-LANZADERA="/var/lib/oa/Kubernetes/lanzadera" # "Lanzadera" donde estarán los ficheros YAML ya personalizados por la OA que se lanzan al cluster
-OAK8SLOG="/var/log/hosting"  # Logs de proceso de personalizacion del YAML y lanzamiento del Servicio
-CORREO="/var/lib/oa/correo" # Almacen de mensajes de correos de Serivios y VPS
-IPCLUSTER="$(minikube ip)" # IP del Cluster
-```
-
-## [YAML Base para servicios](./yamlBase/yamlBase.md)
-
-## [Puntos de un Servicio en Kubernetes](puntosServicios.md)
-
-## [Clúster](cluster.md)
-
 ________________________________________
 *[Volver al atrás...](./oa.md)*
