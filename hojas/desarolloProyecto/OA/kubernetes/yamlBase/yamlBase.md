@@ -6,14 +6,14 @@ Estos servicios estan almacenados en **`$BASEK8S`**
 
 Los servicios definidos son:
 
-- joomla
-- wordpress
-- prestashop
-- mediawiki (no disponible en la OA)
-- drupal
+- Drupal
+- WordPress
+- PrestaShop
+- MediaWiki (no disponible en la OA)
+- Joomla
 
+## [YAML Base Drupal](drupal.md)
 ## [YAML Base Wordpress](wordpress.md)
 ## [YAML Base PrestaShop](prestashop.md)
-## [YAML Base Joomla](joomla.md)
 ## [YAML Base MediaWiki](mediawiki.md)
-## [YAML Base Drupal](drupal.md)
+## [YAML Base Joomla](joomla.md)
