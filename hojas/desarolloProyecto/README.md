@@ -4,3 +4,6 @@
 ## [Configuración de phpMyAdmin 5.X.📖](./phpMyAdmin/InstalacionYConfiguracion.md)
 ## [Panel Administración Web.📖](./web/webPHP.md)
 ## [Orchestration Area (OA).📖](./OA/oa.md)
+
+________________________________________
+*[Volver al atrás...](../../README.md)*
