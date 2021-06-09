@@ -9,7 +9,7 @@ Los servicios definidos son:
 - Drupal
 - WordPress
 - PrestaShop
-- MediaWiki (no disponible en la OA)
+- MediaWiki (no esta la OA) _Ver Punto MediaWiki_
 - Joomla
 
 ## [YAML Base Wordpress](wordpress.md)
