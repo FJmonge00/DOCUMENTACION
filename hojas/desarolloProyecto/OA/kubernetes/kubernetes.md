@@ -37,4 +37,4 @@ IPCLUSTER="$(minikube ip)" # IP del Cluster
 ## [Clúster](cluster.md)
 
 ________________________________________
-*[Volver al atrás...](./oa.md)*
+*[Volver al atrás...](../oa.md)*
