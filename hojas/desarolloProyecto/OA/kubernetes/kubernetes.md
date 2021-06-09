@@ -32,9 +32,9 @@ IPCLUSTER="$(minikube ip)" # IP del Cluster
 
 ## [YAML Base para servicios](./yamlBase/yamlBase.md)
 
-## [Explicación Parámetros Kubernetes](ExpliParemetros.md)
+## [Puntos de un Servicio en Kubernetes](puntosServicios.md)
 
-## [Cluster](cluster.md)
+## [Clúster](cluster.md)
 
 ________________________________________
 *[Volver al atrás...](./oa.md)*
