@@ -15,7 +15,7 @@ if [ ! -s $SALIDAVPS/salidaVPS.txt ] # Si no tiene datos (Vacio)
         echo "" >> $OAVPSLOG/VPSLanzados.log
         while IFS=, read id so plan cliente vcpu vram disco notificar email
         do
-            if [ $so == 'WindowsServer2019' ] 
+            if [ ! $so == 'WindowsServer2019' ] 
                 then
                     ./gruaVPS.sh ${cliente} ${id} ${so} ${vcpu} ${vram} ${disco} ${plan} ${notificar} ${email}        
                     case ${so} in
