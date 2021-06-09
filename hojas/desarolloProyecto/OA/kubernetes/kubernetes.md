@@ -34,7 +34,7 @@ IPCLUSTER="$(minikube ip)" # IP del Cluster
 
 ## [Explicación Parámetros Kubernetes](ExpliParemetros.md)
 
-## [Cluster](pools.md)
+## [Cluster](cluster.md)
 
 ________________________________________
 *[Volver al atrás...](./oa.md)*
