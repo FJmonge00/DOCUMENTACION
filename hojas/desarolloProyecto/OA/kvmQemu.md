@@ -31,4 +31,4 @@ CORREO="/var/lib/oa/correo" # Almacen de mensajes de correos de Serivios y VPS
 ## [Red](red.md)
 
 ________________________________________
-*[Volver al atrás...](../README.md)*
+*[Volver al atrás...](./oa.md)*
