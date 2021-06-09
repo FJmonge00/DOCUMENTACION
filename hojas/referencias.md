@@ -14,3 +14,4 @@
 - ### https://www.linuxadictos.com
 - ### https://qastack.mx
 - ### https://vorkbaard.nl
+- ### https://libguestfs.org
