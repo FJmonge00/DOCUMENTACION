@@ -18,7 +18,7 @@ Dicho esto:
 
 >Pára poder clonar las máquinas sin que existan conflictos o información repetida entre ellas se realiza el `sysprep.exe` en la máquina base y esta se clona una vez que se ha ejecutado el `sysprep.exe` limpiando y generando toda las configuraciones, usuarios, hash, claves ssh, y entidades unicas que pueda tener Windows y generando unas nuevas en el arranque.
 
-## Script `oa.sh`
+## Script `oaVPS.sh`
 
 ```bash
 #!/bin/bash
