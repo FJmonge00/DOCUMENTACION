@@ -1,0 +1,20 @@
+#####################
+## PV para MySQL  ###
+#####################
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-elcliente-mysql-id #Cambiar por SQL
+  labels:
+    id: "1000" # Cambiar por SQL
+    app: mediawiki
+    cliente: elcliente #Cambiar por SQL
+spec:
+  capacity:
+    storage: 25Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Recycle
+  storageClassName: mysql-id # Cambiar por SQL
+  hostPath:
+    path: /home/mysql

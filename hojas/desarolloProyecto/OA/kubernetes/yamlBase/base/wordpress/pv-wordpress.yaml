@@ -1,0 +1,20 @@
+#########################
+## PV para WORDPRESS  ###
+########################
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-elcliente-wordpress-id #Cambiar por SQL
+  labels:
+    id: "1000" # Cambiar por SQL
+    app: wordpress
+    cliente: elcliente #Cambiar por SQL
+spec:
+  capacity:
+    storage: 25Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Delete
+  storageClassName: wordpress-id # Cambiar por SQL
+  hostPath:
+    path: /home/wordpress-id

@@ -1,0 +1,20 @@
+#######################
+## PV para postgres  ##
+#######################
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-elcliente-postgres-id # Cambiar por SQL
+  labels:
+    id: "1000" # Cambiar por SQL
+    app: drupal
+    cliente: elcliente #Cambiar por SQL
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Delete
+  storageClassName: postgres-id # Cambiar por SQL
+  hostPath:
+    path: /home/postgres-id # Cambiar por SQL

@@ -1,0 +1,18 @@
+######################
+## CLAIM PARA MYSQL ##
+######################
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-elcliente-mysql-id
+  labels:
+    id: "1000" # Cambiar por SQL
+    app: mediawiki
+    cliente: elcliente #CAMBIAR
+spec:
+  storageClassName: mysql-id # Cambiar por SQL
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 20Gi

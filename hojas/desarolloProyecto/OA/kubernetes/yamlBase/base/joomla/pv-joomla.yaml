@@ -1,0 +1,20 @@
+#########################
+## PV para Joomla     ##
+########################
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-elcliente-joomla-id #Cambiar por SQL
+  labels:
+    id: "1000" # Cambiar por SQL
+    app: joomla
+    cliente: elcliente #Cambiar por SQL
+spec:
+  capacity:
+    storage: 15Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Delete
+  storageClassName: joomla-id # Cambiar por SQL
+  hostPath:
+    path: /home/joomla-id # Cambiar por SQL

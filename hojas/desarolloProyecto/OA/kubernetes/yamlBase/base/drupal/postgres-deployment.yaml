@@ -1,0 +1,68 @@
+#####################
+## SERVICIO postgres  ##
+#####################
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-id # Cambiar por SQL
+  labels:
+    id: "1000" # Cambiar por SQL
+    app: drupal
+    cliente: elcliente # Cambiar por SQL # Cambiar por SQL
+spec:
+  ports:
+    - port: 5432
+  selector:
+    app: drupal
+    tier: postgres
+  clusterIP: None
+---
+###########################
+## DEPLOYMENT  postgres  ##
+###########################
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-id # Cambiar por SQL
+  labels:
+    id: "1000" # Cambiar por SQL
+    app: drupal
+    cliente: elcliente # Cambiar por SQL
+spec:
+  selector:
+    matchLabels:
+      id: "1000" # Cambiar por SQL
+      app: drupal
+      cliente: elcliente # Cambiar por SQL
+      tier: postgres
+  #replicas: 2 # Por defecto 2 Replicas
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        id: "1000" # Cambiar por SQL
+        app: drupal
+        cliente: elcliente # Cambiar por SQL
+        tier: postgres
+    spec:
+      containers:
+      - image: postgres:13.2
+        name: postgres-id # Cambiar por SQL
+        env:
+        - name: POSTGRES_USER
+          value: drupal
+        - name: POSTGRES_DB
+          value: dbdrupal
+        - name: POSTGRES_PASSWORD
+          value: contrasena #Cambio por OA
+        ports:
+        - containerPort: 5432
+          name: postgres-id # Cambiar por SQL
+        volumeMounts:
+        - name: postgres-persistent-storage
+          mountPath: /var/lib/postgres
+      volumes:
+      - name: postgres-persistent-storage
+        persistentVolumeClaim:
+          claimName: pvc-elcliente-postgres-id # Cambiar por SQL

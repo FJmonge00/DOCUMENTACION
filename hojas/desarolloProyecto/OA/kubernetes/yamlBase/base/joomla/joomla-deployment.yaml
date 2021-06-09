@@ -1,0 +1,67 @@
+#############################
+## Servicio de Joomla      ##
+#############################
+apiVersion: v1
+kind: Service
+metadata:
+  name: joomla-id #Cambiar por SQL
+  labels:
+    id: "1000" # Cambiar por SQL
+    app: joomla
+    cliente: elcliente  # Cambiar por SQL
+spec:
+  ports:
+    - port: 80
+  selector:
+    app: joomla 
+    cliente: elcliente # Cambiar por SQL
+    tier: frontend
+  type: NodePort
+---
+###############################
+## Deployment de  Joomla    ##
+###############################
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: joomla-id #Cambiar por SQL
+  labels:
+    id: "1000" # Cambiar por SQL
+    app: joomla
+    cliente: elcliente # Cambiar por SQL
+spec:
+  selector:
+    matchLabels:
+      id: "1000" # Cambiar por SQL
+      app: joomla
+      cliente: elcliente # Cambiar por SQL
+      tier: frontend
+  # replicas: 4 # No sincronizacion con la B.D
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        id: "1000" # Cambiar por SQL
+        app: joomla
+        cliente: elcliente # Cambiar por SQL
+        tier: frontend
+    spec:
+      containers:
+      - image: joomla:3.9.25-apache
+        name: joomla-id #Cambiar por SQL
+        env:
+        - name: JOOMLA_DB_HOST
+          value: mysql-id #CAMBIAR  POR EL SQL
+        - name: JOOMLA_DB_PASSWORD
+          value: contrasena # CAMBIAR OA
+        ports:
+        - containerPort: 80
+          name: joomla-id #Cambiar por SQL
+        volumeMounts:
+        - name: joomla-persistent-storage
+          mountPath: /var/www/html
+      volumes:
+      - name: joomla-persistent-storage
+        persistentVolumeClaim:
+          claimName: pvc-elcliente-joomla-id # #Cambiar por SQL

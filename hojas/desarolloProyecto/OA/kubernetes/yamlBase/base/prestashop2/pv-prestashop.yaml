@@ -1,0 +1,20 @@
+#########################
+## PV de PrestaShop  ###
+########################
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-elcliente-prestashop-id #Cambiar por SQL
+  labels:
+    id: "1000" # Cambiar por SQL
+    app: prestashop
+    cliente: elcliente #Cambiar por SQL
+spec:
+  capacity:
+    storage: 15Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Delete
+  storageClassName: prestashop-id # Cambiar por SQL
+  hostPath:
+    path: /home/prestashop-id #Cambiar por SQL

@@ -53,6 +53,9 @@ virt-install --name BaseCentos8 \
 ![foto](../imagenes/installsshCentos.jpg)
 ![foto](../imagenes/installSshCentos2.jpg)
 
+________________________________________
+*[Volver al atrás...](./mvBase.md)*
+
 
 
 

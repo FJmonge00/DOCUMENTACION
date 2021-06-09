@@ -1,0 +1,62 @@
+#############################
+## SERVICIO PARA mediawiki ##
+#############################
+apiVersion: v1
+kind: Service
+metadata:
+  name: mediawiki-id #Cambiar por SQL
+  labels:
+    id: "1000" # Cambiar por SQL
+    app: mediawiki
+    cliente: elcliente  # Cambiar por SQL
+spec:
+  ports:
+    - port: 80
+  selector:
+    app: mediawiki
+    cliente: elcliente # Cambiar por SQL
+    tier: frontend
+  type: NodePort
+---
+###############################
+## DEPLOYMENT PARA mediawiki    ##
+###############################
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mediawiki-id #Cambiar por SQL
+  labels:
+    id: "1000" # Cambiar por SQL
+    app: mediawiki
+    cliente: elcliente # Cambiar por SQL
+spec:
+  selector:
+    matchLabels:
+      id: "1000" # Cambiar por SQL
+      app: mediawiki
+      cliente: elcliente # Cambiar por SQL
+      tier: frontend
+  # replicas: 4 # Por defecto, No sincronizacion con la B.D
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        id: "1000" # Cambiar por SQL
+        app: mediawiki
+        cliente: elcliente # Cambiar por SQL
+        tier: frontend
+    spec:
+      containers:
+      - image: mediawiki:1.35.1 # Versiones de apache no la lastest
+        name: mediawiki-id #Cambiar por SQL
+        ports:
+        - containerPort: 80
+          name: mediawiki-id #Cambiar por SQL
+        volumeMounts:
+        - name: mediawiki-persistent-storage
+          mountPath: /var/www/html/images
+      volumes:
+      - name: mediawiki-persistent-storage
+        persistentVolumeClaim:
+          claimName: pvc-elcliente-mediawiki-id # Cambiar respecto al fichero de PVC

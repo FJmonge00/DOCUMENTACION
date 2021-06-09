@@ -18,3 +18,6 @@ virt-install --name Debian10 \
 ![foto](../imagenes/crearDebian.jpg)
 ![foto](../imagenes/instalacionBaseDebian.png)
 ![foto](../imagenes/DebianBase.jpg)
+
+________________________________________
+*[Volver al atrás...](./mvBase.md)*

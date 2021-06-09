@@ -44,3 +44,6 @@ virt-install --name BaseUbuntuServer2004 \
 ![foto](../imagenes/ubuntu5.jpg)
 ![foto](../imagenes/ubuntu6.png)
 ![foto](../imagenes/maquinaUbuntu.jpg)
+
+________________________________________
+*[Volver al atrás...](./mvBase.md)*

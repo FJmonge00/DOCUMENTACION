@@ -9,3 +9,6 @@ Para mejorar la seguridad cambiaremos el puerto de conexión SSH y limitaremos e
 ## En el caso de centos tenemos añadir las exepciones en el firewall
 
 ![ssh](../imagenes/ssh-centos.png)
+
+________________________________________
+*[Volver al atrás...](./mvBase.md)*

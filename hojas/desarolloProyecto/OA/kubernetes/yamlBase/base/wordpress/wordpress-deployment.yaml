@@ -1,0 +1,71 @@
+#############################
+## SERVICIO PARA wordpress ##
+#############################
+apiVersion: v1
+kind: Service
+metadata:
+  name: wordpress-id #Cambiar por SQL
+  labels:
+    id: "1000" # Cambiar por SQL
+    app: wordpress
+    cliente: elcliente  # Cambiar por SQL
+spec:
+  ports:
+    - port: 80
+  selector:
+    app: wordpress
+    cliente: elcliente # Cambiar por SQL
+    tier: frontend
+  type: NodePort
+---
+###############################
+## DEPLOYMENT PARA wordpress    ##
+###############################
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: wordpress-id #Cambiar por SQL
+  labels:
+    id: "1000" # Cambiar por SQL
+    app: wordpress
+    cliente: elcliente # Cambiar por SQL
+spec:
+  selector:
+    matchLabels:
+      id: "1000" # Cambiar por SQL
+      app: wordpress
+      cliente: elcliente # Cambiar por SQL
+      tier: frontend
+  # replicas: 4 # Por defecto, No sincronizacion con la B.D
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        id: "1000" # Cambiar por SQL
+        app: wordpress
+        cliente: elcliente # Cambiar por SQL
+        tier: frontend
+    spec:
+      containers:
+      - image: wordpress:4.8-apache # Versiones de apache no la lastest
+        name: wordpress-id #Cambiar por SQL
+        env:
+        - name: WORDPRESS_DB_HOST
+          value: mysql-id #CAMBIAR  POR EL SQL
+        - name: WORDPRESS_DB_PASSWORD
+          value: contrasena # CAMBIAR POR SQL B.D
+          #valueFrom:
+          #  secretKeyRef:
+          #   name: mysql-pass
+          #   key: password
+        ports:
+        - containerPort: 80
+          name: wordpress-id #Cambiar por SQL
+        volumeMounts:
+        - name: wordpress-persistent-storage
+          mountPath: /var/www/html
+      volumes:
+      - name: wordpress-persistent-storage
+        persistentVolumeClaim:
+          claimName: pvc-elcliente-wordpress-id # Cambiar respecto al fichero de PVC

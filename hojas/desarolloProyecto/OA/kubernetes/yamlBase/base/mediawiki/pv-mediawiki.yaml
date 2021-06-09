@@ -1,0 +1,20 @@
+#########################
+## PV para MediaWiki  ###
+########################
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-elcliente-mediawiki-id #Cambiar por SQL
+  labels:
+    id: "1000" # Cambiar por SQL
+    app: mediawiki
+    cliente: elcliente #Cambiar por SQL
+spec:
+  capacity:
+    storage: 25Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Recycle
+  storageClassName: mediawiki-id # Cambiar por SQL
+  hostPath:
+    path: /home/mediawiki

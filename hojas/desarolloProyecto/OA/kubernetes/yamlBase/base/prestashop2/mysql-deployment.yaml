@@ -1,0 +1,64 @@
+########################
+## Servicio de MySQL  ##
+########################
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-id # Cambiar por SQL
+  labels:
+    id: "1000" # Cambiar por SQL
+    app: prestashop
+    cliente: elcliente # Cambiar por SQL
+spec:
+  ports:
+    - port: 3306
+  selector:
+    app: prestashop
+    tier: mysql
+  clusterIP: None
+---
+########################
+## Deployment  MySQL  ##
+########################
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-id # Cambiar por SQL
+  labels:
+    id: "1000" # Cambiar por SQL
+    app: prestashop
+    cliente: elcliente # Cambiar por SQL
+spec:
+  selector:
+    matchLabels:
+      id: "1000" # Cambiar por SQL
+      app: prestashop
+      cliente: elcliente # Cambiar por SQL
+      tier: mysql
+  #replicas: 2 # Replicas No sincroniza BD
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        id: "1000" # Cambiar por SQL
+        app: prestashop
+        cliente: elcliente # Cambiar por SQL
+        tier: mysql
+    spec:
+      containers:
+      - image: mysql:5.6
+        name: mysql-id # Cambiar por SQL
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: contrasena # Cambiar OA
+        ports:
+        - containerPort: 3306
+          name: mysql-id # Cambiar por SQL
+        volumeMounts:
+        - name: mysql-persistent-storage
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: mysql-persistent-storage
+        persistentVolumeClaim:
+          claimName: pvc-elcliente-mysql-id # Cambiar por SQL

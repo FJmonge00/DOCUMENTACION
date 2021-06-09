@@ -1,0 +1,18 @@
+#########################
+## CLAIM PARA postgres ##
+#########################
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-elcliente-postgres-id
+  labels:
+    id: "1000" # Cambiar por SQL
+    app: drupal
+    cliente: elcliente # Cambiar por SQL
+spec:
+  storageClassName: postgres-id # Cambiar por SQL
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 5Gi

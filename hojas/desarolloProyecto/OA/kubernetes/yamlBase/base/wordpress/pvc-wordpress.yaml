@@ -1,0 +1,18 @@
+###########################
+## CLAIM PARA  wordpress ##
+###########################
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-elcliente-wordpress-id # cambio
+  labels:
+    id: "1000" # Cambiar por SQL
+    app: wordpress
+    cliente: elcliente #CAMBIAR
+spec:
+  storageClassName: wordpress-id # Cambiar por SQL
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 20Gi

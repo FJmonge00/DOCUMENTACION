@@ -1,0 +1,65 @@
+#####################
+## SERVICIO MYSQL  ##
+#####################
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-id # Cambiar por SQL
+  labels:
+    id: "1000" # Cambiar por SQL
+    app: wordpress
+    cliente: elcliente # Cambiar por SQL # Cambiar por SQL
+spec:
+  ports:
+    - port: 3306
+  selector:
+    id: "1000"
+    #app: wordpress
+    #tier: mysql
+  clusterIP: None
+---
+########################
+## DEPLOYMENT  MYSQL  ##
+########################
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: mysql-id # Cambiar por SQL
+  labels:
+    id: "1000" # Cambiar por SQL
+    app: wordpress
+    cliente: elcliente # Cambiar por SQL
+spec:
+  selector:
+    matchLabels:
+      id: "1000" # Cambiar por SQL
+      # app: wordpress
+      # cliente: elcliente # Cambiar por SQL
+      # tier: mysql
+  #replicas: 2 # Por defecto 2 Replicas
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        id: "1000" # Cambiar por SQL
+        app: wordpress
+        cliente: elcliente # Cambiar por SQL
+        tier: mysql
+    spec:
+      containers:
+      - image: mysql:5.6
+        name: mysql-id # Cambiar por SQL
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: contrasena # cambiar respecto al fichero de PVC y Cambiar por SQL
+        ports:
+        - containerPort: 3306
+          name: mysql-id # Cambiar por SQL
+        volumeMounts:
+        - name: mysql-persistent-storage
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: mysql-persistent-storage
+        persistentVolumeClaim:
+          claimName: pvc-elcliente-mysql-id # cambiar respecto al fichero de PVC y Cambiar por SQL

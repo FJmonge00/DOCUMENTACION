@@ -18,4 +18,9 @@ Estás Máquinas serán clonadas y tratadas para generar un VPS totalmente Opert
 
 ## [Configuración General de SSH para Máquinas Linux](sshLinux.md)
 
+________________________________________
+*[Volver al atrás...](../kvmQemu.md)*
+
+
+
 

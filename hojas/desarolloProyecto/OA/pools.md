@@ -38,3 +38,6 @@ Las rutas Originales son: `$OA/VPS/base`
 **En mi caso tenía algunas máquinas Base ya creadas por lo que he tenido que cambiarlo directamente en el XML que define las máquinas**
 
 ![pools2](./imagenes/cambioENMaquinas.png)
+
+________________________________________
+*[Volver al atrás...](./kvmQemu.md)*

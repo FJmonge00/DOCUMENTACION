@@ -19,7 +19,7 @@ _Bare-Metal signfica que su rendimiento es prácticamente idéntico que el de la
 - ***`--noautoconsole`***: Al crear la máquina, KVM lanza de manera automáticamente la consola. este parámetro lo impide.
 - ***`--boot cdrom,hd`***: Orden de de arranque.
 
-## Tipo de Sistema Opertivo KVM
+## Tipo de Sistema Operativo KVM
 
 Para poder virtualizar de manera eficente una Máquina lo ideal es indicar virtualizacion del tipo KVM e indicar el os-variant, lo que se traduce como tipo de sistema opertivo. Para ver los tipos de sistemas opertivos soportados ademas de información intersante como podría ser ubicaiones de ISOS de estos tenemos que instalar el siguiente paquete:
 
@@ -29,7 +29,7 @@ apt install libosinfo-bin
 
 ![foto](./imagenes/mostrar-sistemas-opertivos.jpg)
 
-### Todos los Sistemas Opertivos Disponibles
+### Todos los Sistemas Operativos Disponibles
 
 ```bash
 osinfo-query os | less
@@ -52,3 +52,6 @@ osinfo-query os | grep -i "TipoDeSistema"
 ```
 
 ![foto](./imagenes/osVariant.jpg)
+
+________________________________________
+*[Volver al atrás...](./kvmQemu.md)*

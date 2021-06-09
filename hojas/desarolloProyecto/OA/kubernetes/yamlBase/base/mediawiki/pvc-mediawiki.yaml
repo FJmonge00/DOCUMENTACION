@@ -1,0 +1,18 @@
+###########################
+## CLAIM PARA  mediawiki ##
+###########################
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-elcliente-mediawiki-id # cambio
+  labels:
+    id: "1000" # Cambiar por SQL
+    app: mediawiki
+    cliente: elcliente #CAMBIAR
+spec:
+  storageClassName: mediawiki-id # Cambiar por SQL
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 20Gi

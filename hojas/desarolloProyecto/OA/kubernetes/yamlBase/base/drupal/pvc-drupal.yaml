@@ -1,0 +1,18 @@
+#########################
+## CLAIM PARA drupal  ##
+#########################
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-elcliente-drupal-id # Cambiar por SQL
+  labels:
+    id: "1000" # Cambiar por SQL
+    app: drupal
+    cliente: elcliente # Cambiar por SQL
+spec:
+  storageClassName: drupal-id # Cambiar por SQL
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 15Gi

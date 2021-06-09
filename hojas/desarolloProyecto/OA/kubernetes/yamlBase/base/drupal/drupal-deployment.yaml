@@ -1,0 +1,72 @@
+#############################
+## SERVICIO PARA drupal ##
+#############################
+apiVersion: v1
+kind: Service
+metadata:
+  name: drupal-id #Cambiar por SQL
+  labels:
+    id: "1000" # Cambiar por SQL
+    app: drupal
+    cliente: elcliente  # Cambiar por SQL
+spec:
+  ports:
+    - port: 80
+  selector:
+    app: drupal
+    cliente: elcliente # Cambiar por SQL
+    tier: frontend
+  type: NodePort
+---
+###############################
+## DEPLOYMENT PARA drupal    ##
+###############################
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: drupal-id #Cambiar por SQL
+  labels:
+    id: "1000" # Cambiar por SQL
+    app: drupal
+    cliente: elcliente # Cambiar por SQL
+spec:
+  selector:
+    matchLabels:
+      id: "1000" # Cambiar por SQL
+      app: drupal
+      cliente: elcliente # Cambiar por SQL
+      tier: frontend
+  # replicas: 4 # Por defecto, No sincronizacion con la B.D
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        id: "1000" # Cambiar por SQL
+        app: drupal
+        cliente: elcliente # Cambiar por SQL
+        tier: frontend
+    spec:
+      containers:
+      - image: drupal:9.1.8-php8.0-apache-buster # Versiones de apache
+        name: drupal-id # Cambiar por SQL
+        env:
+        - name: POSTGRES_PASSWORD
+          value: contrasena #Cambiar por SQL
+        ports:
+        - containerPort: 80
+          name: drupal-id #Cambiar por SQL
+        volumeMounts:
+        - name: drupal-persistent-storage
+          mountPath: /var/www/html/modules
+          # subPath: modules
+        - name: drupal-persistent-storage
+          mountPath: /var/www/html/profiles
+          # subPath: profiles
+        - name: drupal-persistent-storage
+          mountPath: /var/www/html/themes
+          # subPath: themes
+      volumes:
+      - name: drupal-persistent-storage
+        persistentVolumeClaim:
+          claimName: pvc-elcliente-drupal-id # Cambiar respecto al fichero de PVC

@@ -1,0 +1,20 @@
+#####################
+## PV de MySQL   ###
+#####################
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-elcliente-mysql-id #Cambiar por SQL
+  labels:
+    id: "1000" # Cambiar por SQL
+    app: prestashop
+    cliente: elcliente #Cambiar por SQL
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Delete
+  storageClassName: mysql-id # Cambiar por SQL
+  hostPath:
+    path: /home/mysql-id #Cambiar por SQL
