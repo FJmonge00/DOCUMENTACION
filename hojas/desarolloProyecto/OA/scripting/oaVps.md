@@ -38,7 +38,7 @@ if [ ! -s $SALIDAVPS/salidaVPS.txt ] # Si no tiene datos (Vacio)
         echo "" >> $OAVPSLOG/VPSLanzados.log
         while IFS=, read id so plan cliente vcpu vram disco notificar email
         do
-            if [ $so == 'WindowsServer2019' ] 
+            if [ ! $so == 'WindowsServer2019' ] 
                 then
                     ./gruaVPS.sh ${cliente} ${id} ${so} ${vcpu} ${vram} ${disco} ${plan} ${notificar} ${email}        
                     case ${so} in
@@ -188,6 +188,8 @@ vCPU=$4
 vRAM=$5
 DiscoAnadido=$6
 Plan=$7
+notificar=$8
+email=$9
 contrasena=$(cat /dev/urandom | tr -dc [:upper:][:lower:][:digit:] | head -c32)
 # contrasena=Coria21
 if [ ! -d $OAVPSLOG/$cliente ]
@@ -226,7 +228,6 @@ estado=$(virsh list --all --state-shutoff --name | grep "$cliente-$id" | wc -l)
 while [ $estado -eq 1 ] 
 do
     sleep 2
-    echo "Bucle apagado"
     estado=$(virsh list --all --state-shutoff --name | grep "$cliente-$id" | wc -l)
 done
 # Comprobar arrancado finalizado
@@ -234,11 +235,10 @@ esperar=1
 while [ $esperar -eq 1 ]
 do
     ip=$(virsh domifaddr --domain "$cliente-$id" | grep "192.168" | awk '{print $4}' | sed 's/\/24//g') # IP DE LA MAQUINA
-    echo "$ip"
     if [ -z "$ip" ] 
         then
             echo "$ip"
-            sleep 10
+            sleep 3
             esperar=1
         else
             esperar=0
@@ -254,7 +254,8 @@ if [ $notificar -gt 0 ]
         cat $CORREO/bienvenida/plantillaVPS.txt > $CORREO/bienvenida/VPS/Bienvenida-$cliente-$id.txt
         # Personalizacion
         sed -i "s/VPS-CAMBIAR/$so/g" $CORREO/bienvenida/VPS/Bienvenida-$cliente-$id.txt
-        sed -i "s/IP-VPS/$ip/g" $CORREO/bienvenida/VPS/Bienvenida-$cliente-$id.txt
+        sed -i '11d' $CORREO/bienvenida/VPS/Bienvenida-$cliente-$id.txt
+        sed -i "s/ssh root@IP-VPS -p 3022/ssh Administrador@$ip/g" $CORREO/bienvenida/VPS/Bienvenida-$cliente-$id.txt
         sed -i "s/CONTRASENA-VPS/$contrasena/g" $CORREO/bienvenida/VPS/Bienvenida-$cliente-$id.txt
         cat $CORREO/bienvenida/VPS/Bienvenida-$cliente-$id.txt | mail -s "Alta VPS: $so-$id" $email
 fi
