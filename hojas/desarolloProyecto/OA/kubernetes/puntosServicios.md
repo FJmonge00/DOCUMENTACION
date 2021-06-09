@@ -34,7 +34,7 @@ kubectl get pv -l cliente=ayesa
 
 ![servicio](../imagenes/servi3.jpg)
 
-## Volumenes (pvc)
+## Reclaim (pvc)
 
 ```bash
 kubectl get pvc -l cliente=ayesa

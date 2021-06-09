@@ -18,7 +18,7 @@ password=Coria21
 ```
 ![sintaxis](./imagenes/usuarioSinContra.jpg)
 
-### Segguridad del Fichero (Permisos)
+### Seguridad del Fichero (Permisos)
 
 > Unicamente puede ser visto por el usuario de la OA que ejecutará los scripts.
 
