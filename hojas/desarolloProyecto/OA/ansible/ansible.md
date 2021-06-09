@@ -25,4 +25,4 @@ Los planes están definidos en una sería de playbooks de Ansible, que son aplic
 ## [Plan Desarollo Docker Para Debian 10](dockerDebian.md) 
 ## [Plan Desarollo Docker Para Ubuntu Server 20.04](dockerUbuntu.md) 
 ________________________________________
-*[Volver al atrás...](./oa.md)*
+*[Volver al atrás...](../oa.md)*
