@@ -34,9 +34,7 @@ IPCLUSTER="$(minikube ip)" # IP del Cluster
 
 ## [Explicación Parámetros KVM](ExpliParemetros.md)
 
-## [Pools para los VPS](pools.md)
-
-## [Red](red.md)
+## [Cluster](pools.md)
 
 ________________________________________
 *[Volver al atrás...](./oa.md)*
