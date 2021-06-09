@@ -14,11 +14,12 @@ Una vez lanzado el servicio al cluster se enviará un email al cliente indicado 
 
 **Variables de entorno que debemos conocer de los servicios:**
 
-![foto](../imagenes/variablesEntorno.jpg)
-
 ```bash
 cat /etc/environment
 ```
+
+![foto](../imagenes/variablesEntorno.jpg)
+
 
 ```conf
 OA="/var/lib/oa"  # Directorio raíz de la OA
