@@ -47,7 +47,7 @@ if [ $notificar -gt 0 ]
         sed -i "s/SERVICIO/Drupal/g" $CORREO/bienvenida/servicios/Bienvenida-$cliente-$id.txt
         sed -i "s/USUARIODB/drupal/g" $CORREO/bienvenida/servicios/Bienvenida-$cliente-$id.txt
         sed -i "s/CONTRASENADB/$contrasena/g" $CORREO/bienvenida/servicios/Bienvenida-$cliente-$id.txt
-        sed -i "s/SERVIDOR/postgres-$id/g" $CORREO/bienvenida/servicios/Bienvenida-$cliente-$id.txt
+        sed -i "s/SERVIDOR/postgres-$id y la base de datos es dbdrupal/g" $CORREO/bienvenida/servicios/Bienvenida-$cliente-$id.txt
         cp $BASEK8S/drupal/lanzar.sh $LANZADERA/drupal-$id/
         sh $LANZADERA/drupal-$id/lanzar.sh $id $cliente $notificar $email
     else

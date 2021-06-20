@@ -57,7 +57,7 @@ if [ $notificar -gt 0 ]
         cat $CORREO/bienvenida/plantillaServicio.txt > $CORREO/bienvenida/servicios/Bienvenida-$cliente-$id.txt
         # Personalizacion
         sed -i "s/SERVICIO/Joomla/g" $CORREO/bienvenida/servicios/Bienvenida-$cliente-$id.txt
-        sed -i "s/USUARIODB/joomla/g" $CORREO/bienvenida/servicios/Bienvenida-$cliente-$id.txt
+        sed -i "s/USUARIODB/root/g" $CORREO/bienvenida/servicios/Bienvenida-$cliente-$id.txt
         sed -i "s/CONTRASENADB/$contrasena/g" $CORREO/bienvenida/servicios/Bienvenida-$cliente-$id.txt
         sed -i "s/SERVIDOR/mysql-$id/g" $CORREO/bienvenida/servicios/Bienvenida-$cliente-$id.txt
         cp $BASEK8S/joomla/lanzar.sh $LANZADERA/joomla-$id/

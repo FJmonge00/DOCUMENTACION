@@ -1,4 +1,4 @@
-# Algunas de las dificultas más destacables
+# Algunas de las dificultades más destacables
 
 ## Bases de datos y replicas de PODs
 
